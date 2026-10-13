@@ -1,0 +1,119 @@
+/* ---------- Tokens ---------- */
+:root {
+  --surface: #fcfcfb;
+  --surface-alt: #f3f1ec;
+  --ink: #1d1d1b;
+  --ink-2: #52514e;
+  --muted: #8a8984;
+  --rule: #e3e1db;
+  --accent: #2a78d6;      /* humpback blue */
+  --deep: #0d366b;
+  --max: 760px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background: linear-gradient(180deg, #0d366b 0%, #184f95 70%, #256abf 100%);
+  color: #fff;
+  padding: 88px 24px 72px;
+}
+.hero-inner { max-width: var(--max); margin: 0 auto; }
+.kicker {
+  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #b7d3f6; margin: 0 0 12px;
+}
+.hero h1 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: clamp(36px, 6vw, 56px); line-height: 1.08; margin: 0 0 20px; font-weight: 700;
+}
+.hero .lede { font-size: 20px; color: #e5effc; max-width: 640px; margin: 0; }
+
+/* ---------- Story navigation ---------- */
+.toc {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(252, 252, 251, 0.94); backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.toc ol {
+  max-width: 1000px; margin: 0 auto; padding: 10px 24px; list-style: none;
+  display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13px;
+}
+.toc a { color: var(--ink-2); text-decoration: none; }
+.toc a:hover { color: var(--accent); }
+.toc span { color: var(--muted); margin-right: 4px; }
+
+/* ---------- Sections ---------- */
+main { padding: 0 24px; }
+section.chapter { max-width: 1000px; margin: 0 auto; padding: 72px 0 24px; }
+section.chapter + section.chapter { border-top: 1px solid var(--rule); }
+.chapter-head, .prose { max-width: var(--max); margin-left: auto; margin-right: auto; }
+.chapter-num {
+  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
+  margin: 0 0 6px; font-weight: 600;
+}
+h2 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 34px; line-height: 1.15; margin: 0 0 16px; font-weight: 700;
+}
+h3 { font-size: 17px; margin: 0 0 4px; font-weight: 600; }
+.prose p { margin: 0 0 16px; color: #2b2a28; }
+.prose strong { color: var(--ink); }
+
+/* ---------- Figures ---------- */
+figure.chart {
+  margin: 32px auto 40px; max-width: 1000px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.chart-head { width: 100%; max-width: var(--max); margin-bottom: 10px; }
+.chart-head p { margin: 0; font-size: 15px; color: var(--ink-2); }
+.vis { max-width: 100%; overflow: hidden; }
+figcaption {
+  width: 100%; max-width: var(--max); margin-top: 8px;
+  font-size: 13px; color: var(--muted); line-height: 1.5;
+}
+.how { color: var(--accent); font-weight: 600; }
+
+/* Two charts side by side on wide screens */
+.pair { display: grid; grid-template-columns: 1fr; gap: 8px; }
+@media (min-width: 1100px) {
+  .pair { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+/* Key-fact callout */
+.callout {
+  max-width: var(--max); margin: 8px auto 24px; padding: 16px 20px;
+  background: var(--surface-alt); border-left: 4px solid var(--accent); border-radius: 4px;
+  font-size: 15px; color: var(--ink-2);
+}
+.big-number {
+  font-family: "Source Serif 4", Georgia, serif; font-size: 44px; font-weight: 700;
+  color: var(--deep); line-height: 1; display: block; margin-bottom: 4px;
+}
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;
+         max-width: var(--max); margin: 24px auto; }
+.stats div { background: var(--surface-alt); border-radius: 6px; padding: 16px; font-size: 14px; color: var(--ink-2); }
+
+/* Vega-Embed controls (dropdown) */
+.vega-bindings { font-size: 14px; color: var(--ink-2); margin: 6px 0 10px; }
+.vega-bindings select { font: inherit; padding: 4px 8px; border-radius: 4px; border: 1px solid #cfcdc6; background: #fff; }
+#vg-tooltip-element { font-family: "Inter", system-ui, sans-serif; font-size: 12px; }
+
+/* ---------- Footer ---------- */
+footer { background: #1d1d1b; color: #c3c2b7; padding: 48px 24px; margin-top: 64px; font-size: 14px; }
+footer .inner { max-width: var(--max); margin: 0 auto; }
+footer h2 { color: #fff; font-size: 22px; }
+footer a { color: #9ec5f4; }
+footer li { margin-bottom: 8px; }

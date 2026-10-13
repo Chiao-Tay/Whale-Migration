@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Whale reports per year by how they were reported, 2000-2025.",
+  "data": {
+    "url": "data/c10_sources_by_year.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "year": "number",
+        "records": "number"
+      }
+    }
+  },
+  "width": 620,
+  "height": 260,
+  "transform": [
+    {
+      "calculate": "indexof([\"Citizen science apps\", \"Government wildlife atlases\", \"Scientific surveys\", \"Museum collections\"], datum.source)",
+      "as": "src_order"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "title": null,
+      "scale": {
+        "domain": [
+          2000,
+          2025
+        ],
+        "nice": false
+      },
+      "axis": {
+        "format": "d",
+        "grid": false
+      }
+    },
+    "y": {
+      "field": "records",
+      "type": "quantitative",
+      "stack": true,
+      "title": "Reports per year"
+    },
+    "color": {
+      "field": "source",
+      "type": "nominal",
+      "title": null,
+      "scale": {
+        "domain": [
+          "Citizen science apps",
+          "Government wildlife atlases",
+          "Scientific surveys",
+          "Museum collections"
+        ],
+        "range": [
+          "#6250d6",
+          "#eda100",
+          "#008300",
+          "#e87ba4"
+        ]
+      },
+      "legend": {
+        "orient": "top-left",
+        "direction": "vertical"
+      }
+    },
+    "order": {
+      "field": "src_order"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "fillOpacity": 0.85,
+        "stroke": "#fcfcfb",
+        "strokeWidth": 1
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hoverYear",
+          "select": {
+            "type": "point",
+            "fields": [
+              "year"
+            ],
+            "on": "pointerover",
+            "nearest": true,
+            "clear": "pointerout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 30
+      },
+      "encoding": {
+        "opacity": {
+          "condition": {
+            "param": "hoverYear",
+            "empty": false,
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "source",
+            "title": "Source"
+          },
+          {
+            "field": "records",
+            "title": "Reports",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Inter, system-ui, sans-serif",
+    "background": "transparent",
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelColor": "#52514e",
+      "titleColor": "#52514e",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 500,
+      "gridColor": "#ecebe7",
+      "domainColor": "#cfcdc6",
+      "tickColor": "#cfcdc6"
+    },
+    "legend": {
+      "labelColor": "#52514e",
+      "titleColor": "#52514e",
+      "labelFontSize": 11,
+      "titleFontSize": 11,
+      "titleFontWeight": 600,
+      "symbolStrokeWidth": 0
+    },
+    "header": {
+      "labelColor": "#1d1d1b",
+      "titleColor": "#52514e",
+      "labelFontSize": 12,
+      "labelFontWeight": 600
+    },
+    "title": {
+      "color": "#1d1d1b",
+      "fontSize": 14,
+      "fontWeight": 600,
+      "anchor": "start",
+      "subtitleColor": "#52514e"
+    }
+  }
+}

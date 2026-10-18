@@ -36,6 +36,8 @@
 - **Museum collections:** OZCAM museums, Smithsonian (NMNH)
 - **Scientific surveys:** everything else (research voyages, aerial surveys)
 
+On the page, scientific surveys and museum collections are shown together as "Surveys & museums" (4.5% of 2016–2025 sightings), so the two main sources stand out.
+
 ## Caveats to state on the page
 - These are **reports, not population counts.** More people looking means more records.
 - 2016–2025 blue whale records peak in May–June, when they pass Western Australia. Earlier summer surveys showed a different peak, so the season you see depends on where people looked.

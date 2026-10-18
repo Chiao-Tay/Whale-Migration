@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Biologically Important Areas for whales (DCCEEW). Pick a species or click a behaviour in the legend.",
-  "width": 640,
-  "height": 500,
+  "description": "Areas the government marks as important for whales (DCCEEW Biologically Important Areas), coloured by behaviour. Pick a species or click a behaviour in the legend.",
+  "width": 860,
+  "height": 640,
   "projection": {
     "type": "conicEqualArea",
     "parallels": [
@@ -21,7 +21,7 @@
       "value": "All whales",
       "bind": {
         "input": "select",
-        "name": "Species: ",
+        "name": "Show areas for: ",
         "options": [
           "All whales",
           "Humpback Whale",
@@ -36,12 +36,45 @@
   "layer": [
     {
       "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#d9e6f1",
+        "cornerRadius": 8,
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "value": 0
+        },
+        "x2": {
+          "value": "width"
+        },
+        "y2": {
+          "value": "height"
+        }
+      }
+    },
+    {
+      "data": {
         "url": "data/whale-bias.json",
         "format": {
           "type": "topojson",
           "feature": "whale_bias"
         }
       },
+      "transform": [
+        {
+          "calculate": "indexof([\"Migration\", \"Reproduction\", \"Foraging\", \"Resting\"], datum.properties.BEHAVIOUR_CAT)",
+          "as": "b_order"
+        }
+      ],
       "params": [
         {
           "name": "behaviour",
@@ -56,7 +89,7 @@
       ],
       "mark": {
         "type": "geoshape",
-        "strokeWidth": 0.8
+        "strokeWidth": 1
       },
       "encoding": {
         "color": {
@@ -66,21 +99,24 @@
           "scale": {
             "domain": [
               "Migration",
+              "Reproduction",
               "Foraging",
-              "Resting",
-              "Reproduction"
+              "Resting"
             ],
             "range": [
-              "#2a78d6",
-              "#eda100",
-              "#1baf7a",
-              "#e87ba4"
+              "#6250d6",
+              "#e87ba4",
+              "#3d4f61",
+              "#c4cdd6"
             ]
           },
           "legend": {
-            "orient": "top-left",
-            "fillColor": "rgba(255,255,255,0.85)",
-            "padding": 6
+            "orient": "bottom-left",
+            "direction": "vertical",
+            "fillColor": "#f3f7fa",
+            "padding": 8,
+            "cornerRadius": 4,
+            "labelExpr": "{'Migration': 'Migration route', 'Reproduction': 'Calving & breeding', 'Foraging': 'Feeding', 'Resting': 'Resting'}[datum.label]"
           }
         },
         "stroke": {
@@ -89,17 +125,21 @@
           "scale": {
             "domain": [
               "Migration",
+              "Reproduction",
               "Foraging",
-              "Resting",
-              "Reproduction"
+              "Resting"
             ],
             "range": [
-              "#2a78d6",
-              "#eda100",
-              "#1baf7a",
-              "#e87ba4"
+              "#6250d6",
+              "#e87ba4",
+              "#3d4f61",
+              "#c4cdd6"
             ]
           }
+        },
+        "order": {
+          "field": "b_order",
+          "sort": "descending"
         },
         "fillOpacity": {
           "condition": [
@@ -109,7 +149,7 @@
             },
             {
               "param": "behaviour",
-              "value": 0.32
+              "value": 0.42
             }
           ],
           "value": 0.03
@@ -122,7 +162,7 @@
             },
             {
               "param": "behaviour",
-              "value": 0.9
+              "value": 0.95
             }
           ],
           "value": 0.08
@@ -158,10 +198,320 @@
       ],
       "mark": {
         "type": "geoshape",
-        "fill": "#e9e7e2",
+        "fill": "#ece7dc",
         "stroke": "#ffffff",
         "strokeWidth": 0.8,
         "tooltip": false
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 155.6,
+            "lat": -14.2,
+            "text": [
+              "Humpback calving waters",
+              "(Great Barrier Reef)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 155.6,
+            "lat": -14.2,
+            "text": [
+              "Humpback calving waters",
+              "(Great Barrier Reef)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 120.3,
+            "lat": -12.4,
+            "text": [
+              "Humpback calving",
+              "(Kimberley)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 120.3,
+            "lat": -12.4,
+            "text": [
+              "Humpback calving",
+              "(Kimberley)"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 131.5,
+            "lat": -35.9,
+            "text": "Southern right whale nursery coast"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 131.5,
+            "lat": -35.9,
+            "text": "Southern right whale nursery coast"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 108.6,
+            "lat": -27.0,
+            "text": [
+              "Migration route",
+              "hugs the coast"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 108.6,
+            "lat": -27.0,
+            "text": [
+              "Migration route",
+              "hugs the coast"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": 0,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
       }
     }
   ],
@@ -169,38 +519,43 @@
     "font": "Inter, system-ui, sans-serif",
     "background": "transparent",
     "view": {
-      "stroke": null
+      "stroke": null,
+      "fill": "#d9e6f1",
+      "cornerRadius": 6
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

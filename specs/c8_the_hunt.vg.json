@@ -11,13 +11,77 @@
       }
     }
   },
-  "width": 620,
-  "height": 260,
+  "width": 800,
+  "height": 320,
   "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "start": 1928.6,
+            "end": 1946.4
+          }
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#e2e9f0",
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1924,
+              1978
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "x2": {
+          "field": "end"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 1963.55
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#3f4b57",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1924,
+              1978
+            ],
+            "nice": false,
+            "zero": false
+          }
+        }
+      }
+    },
     {
       "mark": {
         "type": "bar",
-        "size": 9,
+        "size": 12,
         "cornerRadiusTopLeft": 2,
         "cornerRadiusTopRight": 2
       },
@@ -29,9 +93,10 @@
           "scale": {
             "domain": [
               1924,
-              1970
+              1978
             ],
-            "nice": false
+            "nice": false,
+            "zero": false
           },
           "axis": {
             "format": "d",
@@ -68,8 +133,8 @@
               "East coast (QLD, NSW, Norfolk Is.)"
             ],
             "range": [
-              "#6250d6",
-              "#eda100"
+              "#184f95",
+              "#86b6ef"
             ]
           },
           "legend": {
@@ -103,31 +168,96 @@
       "data": {
         "values": [
           {
-            "year": 1930,
-            "y": 120,
-            "text": "No catches recorded 1929–1946"
+            "x": 1964.3,
+            "y": 1150,
+            "text": [
+              "1961 → 1963:",
+              "1,483 → 91 caught.",
+              "Too few whales left",
+              "to find."
+            ]
           },
           {
-            "year": 1963.8,
-            "y": 230,
+            "x": 1964.3,
+            "y": 450,
             "text": [
-              "1963: last",
-              "humpback catches"
+              "1963: hunting banned",
+              "(International Whaling",
+              "Commission)"
             ]
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 11,
-        "fill": "#52514e",
         "align": "left",
-        "lineHeight": 14
+        "lineHeight": 14,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "fill": "#16212d",
+        "tooltip": false
       },
       "encoding": {
         "x": {
-          "field": "year",
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1924,
+              1978
+            ],
+            "nice": false,
+            "zero": false
+          }
+        },
+        "y": {
+          "field": "y",
           "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1937.5,
+            "y": 260,
+            "text": [
+              "No catches recorded",
+              "1929–1946"
+            ]
+          },
+          {
+            "x": 1954,
+            "y": 2150,
+            "text": "▼ Peak: 2,039 in 1954"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "lineHeight": 14,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "fill": "#16212d",
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              1924,
+              1978
+            ],
+            "nice": false,
+            "zero": false
+          }
         },
         "y": {
           "field": "y",
@@ -146,35 +276,38 @@
       "stroke": null
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

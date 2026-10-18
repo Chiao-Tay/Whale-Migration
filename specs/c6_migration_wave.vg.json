@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Humpback reports by latitude band and month (share of each band's reports), 2016-2025.",
+  "description": "Percentage of humpback sightings in each month, for each 1-degree strip of coast, 2016-2025. Dot = busiest month for that strip.",
   "data": {
     "url": "data/c6_humpback_lat_month.csv",
     "format": {
@@ -15,14 +15,21 @@
     }
   },
   "facet": {
-    "column": {
+    "row": {
       "field": "coast",
       "type": "nominal",
       "title": null,
       "sort": [
         "East coast",
         "West coast"
-      ]
+      ],
+      "header": {
+        "labelOrient": "top",
+        "labelAnchor": "start",
+        "labelAngle": 0,
+        "labelFontSize": 13,
+        "labelPadding": 8
+      }
     }
   },
   "resolve": {
@@ -30,16 +37,11 @@
       "y": "independent"
     }
   },
+  "spacing": 26,
   "spec": {
-    "width": 290,
+    "width": 400,
     "height": {
-      "step": 18
-    },
-    "mark": {
-      "type": "rect",
-      "stroke": "#fcfcfb",
-      "strokeWidth": 1.5,
-      "cornerRadius": 2
+      "step": 20
     },
     "encoding": {
       "x": {
@@ -63,70 +65,139 @@
           ]
         },
         "axis": {
-          "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value - 1]",
+          "labelExpr": "[\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"][datum.value - 1]",
           "labelAngle": 0,
           "ticks": false,
           "domain": false,
-          "orient": "top"
+          "orient": "bottom"
         }
       },
       "y": {
         "field": "lat_band",
         "type": "ordinal",
         "sort": "descending",
-        "title": "Latitude (north at top)",
+        "title": "Further north ↑",
         "axis": {
           "labelExpr": "abs(datum.value) + '°S'",
           "ticks": false,
           "domain": false
         }
-      },
-      "color": {
-        "field": "share_pct",
-        "type": "quantitative",
-        "title": "% of that band's reports",
-        "scale": {
-          "domain": [
-            0,
-            50
-          ],
-          "clamp": true,
-          "range": [
-            "#cde2fb",
-            "#0d366b"
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "rect",
+          "stroke": "#f3f7fa",
+          "strokeWidth": 1.5,
+          "cornerRadius": 2
+        },
+        "encoding": {
+          "color": {
+            "field": "share_pct",
+            "type": "quantitative",
+            "title": "% of that strip's sightings",
+            "scale": {
+              "domain": [
+                0,
+                50
+              ],
+              "clamp": true,
+              "range": [
+                "#cde2fb",
+                "#0d366b"
+              ]
+            },
+            "legend": {
+              "orient": "bottom",
+              "direction": "horizontal",
+              "gradientLength": 220
+            }
+          },
+          "tooltip": [
+            {
+              "field": "coast",
+              "title": "Coast"
+            },
+            {
+              "field": "lat_band",
+              "title": "Strip of coast (°)"
+            },
+            {
+              "field": "month_name",
+              "title": "Month"
+            },
+            {
+              "field": "share_pct",
+              "title": "% of that strip's sightings",
+              "format": ".1f"
+            },
+            {
+              "field": "records",
+              "title": "Sightings",
+              "format": ","
+            }
           ]
-        },
-        "legend": {
-          "orient": "bottom",
-          "direction": "horizontal",
-          "gradientLength": 200
         }
       },
-      "tooltip": [
-        {
-          "field": "coast",
-          "title": "Coast"
-        },
-        {
-          "field": "lat_band",
-          "title": "Latitude band (°)"
-        },
-        {
-          "field": "month_name",
-          "title": "Month"
-        },
-        {
-          "field": "share_pct",
-          "title": "% of band's reports",
-          "format": ".1f"
-        },
-        {
-          "field": "records",
-          "title": "Reports",
-          "format": ","
+      {
+        "transform": [
+          {
+            "joinaggregate": [
+              {
+                "op": "max",
+                "field": "share_pct",
+                "as": "max_share"
+              }
+            ],
+            "groupby": [
+              "coast",
+              "lat_band"
+            ]
+          },
+          {
+            "filter": "datum.share_pct === datum.max_share"
+          }
+        ],
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "fill": "#ffffff",
+          "stroke": "#16212d",
+          "strokeWidth": 1.2,
+          "size": 30,
+          "tooltip": false
         }
-      ]
-    }
+      },
+      {
+        "transform": [
+          {
+            "calculate": "datum.coast === 'East coast' && datum.lat_band === -26 && datum.month === 8 ? '◀ Hervey Bay: Aug rest stop' : datum.coast === 'East coast' && datum.lat_band === -34 && datum.month === 6 ? '◀ Sydney: Jun, going north' : datum.coast === 'East coast' && datum.lat_band === -38 && datum.month === 10 ? '◀ Eden: Oct, going south' : datum.coast === 'West coast' && datum.lat_band === -22 && datum.month === 8 ? '◀ Exmouth: Aug peak' : datum.coast === 'West coast' && datum.lat_band === -32 && datum.month === 10 ? '◀ Perth: Oct, going south' : datum.coast === 'West coast' && datum.lat_band === -35 && datum.month === 6 ? '◀ Augusta: Jun, going north' : ''",
+            "as": "note"
+          },
+          {
+            "filter": "datum.note !== ''"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "fontSize": 11,
+          "fontWeight": 600,
+          "fill": "#16212d",
+          "tooltip": false
+        },
+        "encoding": {
+          "x": {
+            "value": 408
+          },
+          "text": {
+            "field": "note"
+          }
+        }
+      }
+    ]
   },
   "config": {
     "font": "Inter, system-ui, sans-serif",
@@ -135,35 +206,38 @@
       "stroke": null
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

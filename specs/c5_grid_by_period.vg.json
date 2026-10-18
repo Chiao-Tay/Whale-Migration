@@ -1,17 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Whale reports per 1-degree square, by two-month period, 2016-2025.",
+  "description": "Whale sightings in squares about 100 km wide (1 degree), two months at a time, 2016-2025.",
   "vconcat": [
     {
       "hconcat": [
         {
           "title": {
-            "text": "January – February",
+            "text": "Jan – Feb · 29 sightings",
             "fontSize": 12,
-            "fontWeight": 600
+            "fontWeight": 600,
+            "color": "#16212d"
           },
-          "width": 205,
-          "height": 175,
+          "width": 270,
+          "height": 228,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -27,6 +28,33 @@
           "layer": [
             {
               "data": {
+                "values": [
+                  {}
+                ]
+              },
+              "mark": {
+                "type": "rect",
+                "fill": "#d9e6f1",
+                "cornerRadius": 8,
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {
+                  "value": 0
+                },
+                "y": {
+                  "value": 0
+                },
+                "x2": {
+                  "value": "width"
+                },
+                "y2": {
+                  "value": "height"
+                }
+              }
+            },
+            {
+              "data": {
                 "url": "data/australia-states.json",
                 "format": {
                   "type": "topojson",
@@ -40,7 +68,7 @@
               ],
               "mark": {
                 "type": "geoshape",
-                "fill": "#e9e7e2",
+                "fill": "#ece7dc",
                 "stroke": "#ffffff",
                 "strokeWidth": 0.8,
                 "tooltip": false
@@ -66,7 +94,7 @@
               ],
               "mark": {
                 "type": "square",
-                "size": 22,
+                "size": 40,
                 "opacity": 0.95
               },
               "encoding": {
@@ -81,7 +109,7 @@
                 "color": {
                   "field": "records",
                   "type": "quantitative",
-                  "title": "Reports per 1° square",
+                  "title": "Sightings per square",
                   "scale": {
                     "type": "log",
                     "domain": [
@@ -97,7 +125,7 @@
                   "legend": {
                     "orient": "bottom",
                     "direction": "horizontal",
-                    "gradientLength": 220,
+                    "gradientLength": 240,
                     "values": [
                       1,
                       10,
@@ -113,7 +141,7 @@
                   },
                   {
                     "field": "records",
-                    "title": "Reports",
+                    "title": "Sightings",
                     "format": ","
                   },
                   {
@@ -128,17 +156,56 @@
                   }
                 ]
               }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "lon": 133.5,
+                    "lat": -27.0,
+                    "text": [
+                      "Almost empty: whales are",
+                      "feeding in Antarctica"
+                    ]
+                  }
+                ]
+              },
+              "mark": {
+                "type": "text",
+                "align": "center",
+                "dx": 0,
+                "dy": 0,
+                "fontSize": 11,
+                "fontWeight": 600,
+                "lineHeight": 13,
+                "tooltip": false,
+                "fill": "#3f4b57"
+              },
+              "encoding": {
+                "longitude": {
+                  "field": "lon",
+                  "type": "quantitative"
+                },
+                "latitude": {
+                  "field": "lat",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "text"
+                }
+              }
             }
           ]
         },
         {
           "title": {
-            "text": "March – April",
+            "text": "Mar – Apr · 65 sightings",
             "fontSize": 12,
-            "fontWeight": 600
+            "fontWeight": 600,
+            "color": "#16212d"
           },
-          "width": 205,
-          "height": 175,
+          "width": 270,
+          "height": 228,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -154,6 +221,33 @@
           "layer": [
             {
               "data": {
+                "values": [
+                  {}
+                ]
+              },
+              "mark": {
+                "type": "rect",
+                "fill": "#d9e6f1",
+                "cornerRadius": 8,
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {
+                  "value": 0
+                },
+                "y": {
+                  "value": 0
+                },
+                "x2": {
+                  "value": "width"
+                },
+                "y2": {
+                  "value": "height"
+                }
+              }
+            },
+            {
+              "data": {
                 "url": "data/australia-states.json",
                 "format": {
                   "type": "topojson",
@@ -167,7 +261,7 @@
               ],
               "mark": {
                 "type": "geoshape",
-                "fill": "#e9e7e2",
+                "fill": "#ece7dc",
                 "stroke": "#ffffff",
                 "strokeWidth": 0.8,
                 "tooltip": false
@@ -193,7 +287,7 @@
               ],
               "mark": {
                 "type": "square",
-                "size": 22,
+                "size": 40,
                 "opacity": 0.95
               },
               "encoding": {
@@ -208,7 +302,7 @@
                 "color": {
                   "field": "records",
                   "type": "quantitative",
-                  "title": "Reports per 1° square",
+                  "title": "Sightings per square",
                   "scale": {
                     "type": "log",
                     "domain": [
@@ -224,7 +318,7 @@
                   "legend": {
                     "orient": "bottom",
                     "direction": "horizontal",
-                    "gradientLength": 220,
+                    "gradientLength": 240,
                     "values": [
                       1,
                       10,
@@ -240,7 +334,7 @@
                   },
                   {
                     "field": "records",
-                    "title": "Reports",
+                    "title": "Sightings",
                     "format": ","
                   },
                   {
@@ -260,12 +354,13 @@
         },
         {
           "title": {
-            "text": "May – June",
+            "text": "May – Jun · 2,022 sightings",
             "fontSize": 12,
-            "fontWeight": 600
+            "fontWeight": 600,
+            "color": "#16212d"
           },
-          "width": 205,
-          "height": 175,
+          "width": 270,
+          "height": 228,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -281,6 +376,33 @@
           "layer": [
             {
               "data": {
+                "values": [
+                  {}
+                ]
+              },
+              "mark": {
+                "type": "rect",
+                "fill": "#d9e6f1",
+                "cornerRadius": 8,
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {
+                  "value": 0
+                },
+                "y": {
+                  "value": 0
+                },
+                "x2": {
+                  "value": "width"
+                },
+                "y2": {
+                  "value": "height"
+                }
+              }
+            },
+            {
+              "data": {
                 "url": "data/australia-states.json",
                 "format": {
                   "type": "topojson",
@@ -294,7 +416,7 @@
               ],
               "mark": {
                 "type": "geoshape",
-                "fill": "#e9e7e2",
+                "fill": "#ece7dc",
                 "stroke": "#ffffff",
                 "strokeWidth": 0.8,
                 "tooltip": false
@@ -320,7 +442,7 @@
               ],
               "mark": {
                 "type": "square",
-                "size": 22,
+                "size": 40,
                 "opacity": 0.95
               },
               "encoding": {
@@ -335,7 +457,7 @@
                 "color": {
                   "field": "records",
                   "type": "quantitative",
-                  "title": "Reports per 1° square",
+                  "title": "Sightings per square",
                   "scale": {
                     "type": "log",
                     "domain": [
@@ -351,7 +473,7 @@
                   "legend": {
                     "orient": "bottom",
                     "direction": "horizontal",
-                    "gradientLength": 220,
+                    "gradientLength": 240,
                     "values": [
                       1,
                       10,
@@ -367,7 +489,7 @@
                   },
                   {
                     "field": "records",
-                    "title": "Reports",
+                    "title": "Sightings",
                     "format": ","
                   },
                   {
@@ -385,18 +507,20 @@
             }
           ]
         }
-      ]
+      ],
+      "spacing": 14
     },
     {
       "hconcat": [
         {
           "title": {
-            "text": "July – August",
+            "text": "Jul – Aug · 6,770 sightings ★ busiest",
             "fontSize": 12,
-            "fontWeight": 600
+            "fontWeight": 600,
+            "color": "#0d366b"
           },
-          "width": 205,
-          "height": 175,
+          "width": 270,
+          "height": 228,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -412,6 +536,33 @@
           "layer": [
             {
               "data": {
+                "values": [
+                  {}
+                ]
+              },
+              "mark": {
+                "type": "rect",
+                "fill": "#d9e6f1",
+                "cornerRadius": 8,
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {
+                  "value": 0
+                },
+                "y": {
+                  "value": 0
+                },
+                "x2": {
+                  "value": "width"
+                },
+                "y2": {
+                  "value": "height"
+                }
+              }
+            },
+            {
+              "data": {
                 "url": "data/australia-states.json",
                 "format": {
                   "type": "topojson",
@@ -425,7 +576,7 @@
               ],
               "mark": {
                 "type": "geoshape",
-                "fill": "#e9e7e2",
+                "fill": "#ece7dc",
                 "stroke": "#ffffff",
                 "strokeWidth": 0.8,
                 "tooltip": false
@@ -451,7 +602,7 @@
               ],
               "mark": {
                 "type": "square",
-                "size": 22,
+                "size": 40,
                 "opacity": 0.95
               },
               "encoding": {
@@ -466,7 +617,7 @@
                 "color": {
                   "field": "records",
                   "type": "quantitative",
-                  "title": "Reports per 1° square",
+                  "title": "Sightings per square",
                   "scale": {
                     "type": "log",
                     "domain": [
@@ -482,7 +633,7 @@
                   "legend": {
                     "orient": "bottom",
                     "direction": "horizontal",
-                    "gradientLength": 220,
+                    "gradientLength": 240,
                     "values": [
                       1,
                       10,
@@ -498,7 +649,7 @@
                   },
                   {
                     "field": "records",
-                    "title": "Reports",
+                    "title": "Sightings",
                     "format": ","
                   },
                   {
@@ -513,17 +664,56 @@
                   }
                 ]
               }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "lon": 133.5,
+                    "lat": -27.0,
+                    "text": [
+                      "Both coasts",
+                      "fill up"
+                    ]
+                  }
+                ]
+              },
+              "mark": {
+                "type": "text",
+                "align": "center",
+                "dx": 0,
+                "dy": 0,
+                "fontSize": 11,
+                "fontWeight": 600,
+                "lineHeight": 13,
+                "tooltip": false,
+                "fill": "#3f4b57"
+              },
+              "encoding": {
+                "longitude": {
+                  "field": "lon",
+                  "type": "quantitative"
+                },
+                "latitude": {
+                  "field": "lat",
+                  "type": "quantitative"
+                },
+                "text": {
+                  "field": "text"
+                }
+              }
             }
           ]
         },
         {
           "title": {
-            "text": "September – October",
+            "text": "Sep – Oct · 4,807 sightings",
             "fontSize": 12,
-            "fontWeight": 600
+            "fontWeight": 600,
+            "color": "#16212d"
           },
-          "width": 205,
-          "height": 175,
+          "width": 270,
+          "height": 228,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -539,6 +729,33 @@
           "layer": [
             {
               "data": {
+                "values": [
+                  {}
+                ]
+              },
+              "mark": {
+                "type": "rect",
+                "fill": "#d9e6f1",
+                "cornerRadius": 8,
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {
+                  "value": 0
+                },
+                "y": {
+                  "value": 0
+                },
+                "x2": {
+                  "value": "width"
+                },
+                "y2": {
+                  "value": "height"
+                }
+              }
+            },
+            {
+              "data": {
                 "url": "data/australia-states.json",
                 "format": {
                   "type": "topojson",
@@ -552,7 +769,7 @@
               ],
               "mark": {
                 "type": "geoshape",
-                "fill": "#e9e7e2",
+                "fill": "#ece7dc",
                 "stroke": "#ffffff",
                 "strokeWidth": 0.8,
                 "tooltip": false
@@ -578,7 +795,7 @@
               ],
               "mark": {
                 "type": "square",
-                "size": 22,
+                "size": 40,
                 "opacity": 0.95
               },
               "encoding": {
@@ -593,7 +810,7 @@
                 "color": {
                   "field": "records",
                   "type": "quantitative",
-                  "title": "Reports per 1° square",
+                  "title": "Sightings per square",
                   "scale": {
                     "type": "log",
                     "domain": [
@@ -609,7 +826,7 @@
                   "legend": {
                     "orient": "bottom",
                     "direction": "horizontal",
-                    "gradientLength": 220,
+                    "gradientLength": 240,
                     "values": [
                       1,
                       10,
@@ -625,7 +842,7 @@
                   },
                   {
                     "field": "records",
-                    "title": "Reports",
+                    "title": "Sightings",
                     "format": ","
                   },
                   {
@@ -645,12 +862,13 @@
         },
         {
           "title": {
-            "text": "November – December",
+            "text": "Nov – Dec · 326 sightings",
             "fontSize": 12,
-            "fontWeight": 600
+            "fontWeight": 600,
+            "color": "#16212d"
           },
-          "width": 205,
-          "height": 175,
+          "width": 270,
+          "height": 228,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -666,6 +884,33 @@
           "layer": [
             {
               "data": {
+                "values": [
+                  {}
+                ]
+              },
+              "mark": {
+                "type": "rect",
+                "fill": "#d9e6f1",
+                "cornerRadius": 8,
+                "tooltip": false
+              },
+              "encoding": {
+                "x": {
+                  "value": 0
+                },
+                "y": {
+                  "value": 0
+                },
+                "x2": {
+                  "value": "width"
+                },
+                "y2": {
+                  "value": "height"
+                }
+              }
+            },
+            {
+              "data": {
                 "url": "data/australia-states.json",
                 "format": {
                   "type": "topojson",
@@ -679,7 +924,7 @@
               ],
               "mark": {
                 "type": "geoshape",
-                "fill": "#e9e7e2",
+                "fill": "#ece7dc",
                 "stroke": "#ffffff",
                 "strokeWidth": 0.8,
                 "tooltip": false
@@ -705,7 +950,7 @@
               ],
               "mark": {
                 "type": "square",
-                "size": 22,
+                "size": 40,
                 "opacity": 0.95
               },
               "encoding": {
@@ -720,7 +965,7 @@
                 "color": {
                   "field": "records",
                   "type": "quantitative",
-                  "title": "Reports per 1° square",
+                  "title": "Sightings per square",
                   "scale": {
                     "type": "log",
                     "domain": [
@@ -736,7 +981,7 @@
                   "legend": {
                     "orient": "bottom",
                     "direction": "horizontal",
-                    "gradientLength": 220,
+                    "gradientLength": 240,
                     "values": [
                       1,
                       10,
@@ -752,7 +997,7 @@
                   },
                   {
                     "field": "records",
-                    "title": "Reports",
+                    "title": "Sightings",
                     "format": ","
                   },
                   {
@@ -770,7 +1015,8 @@
             }
           ]
         }
-      ]
+      ],
+      "spacing": 14
     }
   ],
   "resolve": {
@@ -781,43 +1027,48 @@
       "color": "shared"
     }
   },
-  "spacing": 14,
+  "spacing": 16,
   "config": {
     "font": "Inter, system-ui, sans-serif",
     "background": "transparent",
     "view": {
-      "stroke": null
+      "stroke": null,
+      "fill": "#d9e6f1",
+      "cornerRadius": 6
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

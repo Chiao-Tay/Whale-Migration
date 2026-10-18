@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Whale-watching hotspots: reports per half-degree square, 2016-2025. Circle area = number of reports.",
-  "width": 620,
-  "height": 500,
+  "description": "Whale-watching hotspots: sightings in squares about 50 km wide (half a degree), 2016-2025. Circle area = number of sightings.",
+  "width": 860,
+  "height": 660,
   "projection": {
     "type": "conicEqualArea",
     "parallels": [
@@ -18,6 +18,33 @@
   "layer": [
     {
       "data": {
+        "values": [
+          {}
+        ]
+      },
+      "mark": {
+        "type": "rect",
+        "fill": "#d9e6f1",
+        "cornerRadius": 8,
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "value": 0
+        },
+        "y": {
+          "value": 0
+        },
+        "x2": {
+          "value": "width"
+        },
+        "y2": {
+          "value": "height"
+        }
+      }
+    },
+    {
+      "data": {
         "url": "data/australia-states.json",
         "format": {
           "type": "topojson",
@@ -31,7 +58,7 @@
       ],
       "mark": {
         "type": "geoshape",
-        "fill": "#e9e7e2",
+        "fill": "#ece7dc",
         "stroke": "#ffffff",
         "strokeWidth": 0.8,
         "tooltip": false
@@ -84,12 +111,12 @@
         "size": {
           "field": "records",
           "type": "quantitative",
-          "title": "Reports",
+          "title": "Sightings",
           "scale": {
             "type": "sqrt",
             "range": [
-              15,
-              1400
+              20,
+              2200
             ]
           },
           "legend": {
@@ -99,13 +126,16 @@
               1500
             ],
             "orient": "bottom-left",
-            "symbolFillColor": "#c9c7c0"
+            "symbolFillColor": "#b9c3cd",
+            "fillColor": "#f3f7fa",
+            "padding": 8,
+            "cornerRadius": 4
           }
         },
         "color": {
           "field": "species_group",
           "type": "nominal",
-          "title": "Most-reported species",
+          "title": "Most-seen species",
           "scale": {
             "domain": [
               "Humpback Whale",
@@ -114,13 +144,16 @@
             ],
             "range": [
               "#2a78d6",
-              "#eb6834",
-              "#9a988f"
+              "#eda100",
+              "#8a96a3"
             ]
           },
           "legend": {
             "orient": "top-left",
-            "symbolOpacity": 1
+            "symbolOpacity": 1,
+            "fillColor": "#f3f7fa",
+            "padding": 8,
+            "cornerRadius": 4
           }
         },
         "order": {
@@ -130,18 +163,18 @@
         "opacity": {
           "condition": {
             "param": "pickSpecies",
-            "value": 0.8
+            "value": 0.85
           },
           "value": 0.1
         },
         "tooltip": [
           {
             "field": "species_group",
-            "title": "Most-reported species"
+            "title": "Most-seen species"
           },
           {
             "field": "records",
-            "title": "Reports",
+            "title": "Sightings",
             "format": ","
           },
           {
@@ -156,44 +189,381 @@
           }
         ]
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 153.25,
+            "lat": -25.25,
+            "text": "Hervey Bay · 1,193"
+          },
+          {
+            "lon": 153.75,
+            "lat": -28.75,
+            "text": "Byron Bay · 744"
+          },
+          {
+            "lon": 151.25,
+            "lat": -33.75,
+            "text": "Sydney"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 20,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 153.25,
+            "lat": -25.25,
+            "text": "Hervey Bay · 1,193"
+          },
+          {
+            "lon": 153.75,
+            "lat": -28.75,
+            "text": "Byron Bay · 744"
+          },
+          {
+            "lon": 151.25,
+            "lat": -33.75,
+            "text": "Sydney"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 20,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 114.25,
+            "lat": -21.75,
+            "text": "Exmouth · 643"
+          },
+          {
+            "lon": 115.75,
+            "lat": -31.75,
+            "text": "Perth"
+          },
+          {
+            "lon": 115.25,
+            "lat": -34.25,
+            "text": "Augusta · 698"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -20,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 114.25,
+            "lat": -21.75,
+            "text": "Exmouth · 643"
+          },
+          {
+            "lon": 115.75,
+            "lat": -31.75,
+            "text": "Perth"
+          },
+          {
+            "lon": 115.25,
+            "lat": -34.25,
+            "text": "Augusta · 698"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -20,
+        "dy": 0,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 131.25,
+            "lat": -31.5,
+            "text": "Head of Bight · 1,884 (busiest)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": -32,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 131.25,
+            "lat": -31.5,
+            "text": "Head of Bight · 1,884 (busiest)"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": -32,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 142.75,
+            "lat": -38.25,
+            "text": "Warrnambool · 649"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 40,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "stroke": "#d9e6f1",
+        "strokeWidth": 3,
+        "strokeOpacity": 0.9,
+        "fill": "#d9e6f1"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 142.75,
+            "lat": -38.25,
+            "text": "Warrnambool · 649"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "dx": 0,
+        "dy": 40,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "lineHeight": 13,
+        "tooltip": false,
+        "fill": "#16212d"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
     }
   ],
   "config": {
     "font": "Inter, system-ui, sans-serif",
     "background": "transparent",
     "view": {
-      "stroke": null
+      "stroke": null,
+      "fill": "#d9e6f1",
+      "cornerRadius": 6
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

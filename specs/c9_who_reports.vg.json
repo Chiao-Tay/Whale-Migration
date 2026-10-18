@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Who reported whales, 2016-2025. Each square is 1% of reports.",
+  "description": "Where whale sightings came from, 2016-2025. Each square is 1% of sightings.",
   "data": {
     "url": "data/c9_sources_waffle.csv",
     "format": {
@@ -14,83 +14,207 @@
       }
     }
   },
-  "width": 260,
-  "height": 260,
-  "params": [
+  "width": 420,
+  "height": 420,
+  "padding": {
+    "left": 5,
+    "top": 5,
+    "bottom": 5,
+    "right": 200
+  },
+  "transform": [
     {
-      "name": "pickSource",
-      "select": {
-        "type": "point",
-        "fields": [
-          "source"
-        ]
-      },
-      "bind": "legend"
+      "calculate": "datum.source === 'Scientific surveys' || datum.source === 'Museum collections' ? 'Scientific surveys & museums' : datum.source",
+      "as": "source_group"
+    },
+    {
+      "calculate": "{'Citizen science apps': 'Apps & websites', 'Government wildlife atlases': 'Government atlases', 'Scientific surveys & museums': 'Surveys & museums'}[datum.source_group]",
+      "as": "source_name"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "count",
+          "as": "group_pct"
+        }
+      ],
+      "groupby": [
+        "source_group"
+      ]
     }
   ],
-  "mark": {
-    "type": "square",
-    "size": 380,
-    "cornerRadius": 3
-  },
-  "encoding": {
-    "x": {
-      "field": "col",
-      "type": "ordinal",
-      "axis": null
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "pickSource",
+          "select": {
+            "type": "point",
+            "fields": [
+              "source_group"
+            ]
+          },
+          "bind": "legend"
+        }
+      ],
+      "mark": {
+        "type": "square",
+        "size": 1120,
+        "cornerRadius": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "col",
+          "type": "ordinal",
+          "axis": null
+        },
+        "y": {
+          "field": "row",
+          "type": "ordinal",
+          "axis": null
+        },
+        "color": {
+          "field": "source_group",
+          "type": "nominal",
+          "title": "Sightings came from",
+          "scale": {
+            "domain": [
+              "Citizen science apps",
+              "Government wildlife atlases",
+              "Scientific surveys & museums"
+            ],
+            "range": [
+              "#008300",
+              "#7c8a99",
+              "#c4cdd6"
+            ]
+          },
+          "legend": {
+            "orient": "none",
+            "legendX": 440,
+            "legendY": 165,
+            "direction": "vertical",
+            "labelLimit": 300,
+            "labelFontSize": 13,
+            "titleFontSize": 13,
+            "symbolSize": 180,
+            "rowPadding": 8,
+            "labelExpr": "{'Citizen science apps': 'Apps & websites · 56%', 'Government wildlife atlases': 'Government atlases · 39.5%', 'Scientific surveys & museums': 'Surveys & museums · 4.5%'}[datum.label]"
+          }
+        },
+        "opacity": {
+          "condition": {
+            "param": "pickSource",
+            "value": 1
+          },
+          "value": 0.15
+        },
+        "tooltip": [
+          {
+            "field": "source_name",
+            "title": "Came from"
+          },
+          {
+            "field": "group_pct",
+            "title": "% of sightings"
+          }
+        ]
+      }
     },
-    "y": {
-      "field": "row",
-      "type": "ordinal",
-      "axis": null
-    },
-    "color": {
-      "field": "source",
-      "type": "nominal",
-      "title": "Reported through",
-      "scale": {
-        "domain": [
-          "Citizen science apps",
-          "Government wildlife atlases",
-          "Scientific surveys",
-          "Museum collections"
-        ],
-        "range": [
-          "#6250d6",
-          "#eda100",
-          "#008300",
-          "#e87ba4"
+    {
+      "data": {
+        "values": [
+          {
+            "x": 210,
+            "y": 107,
+            "text": "56%",
+            "halo": "#005c00"
+          },
+          {
+            "x": 210,
+            "y": 334,
+            "text": "39.5%",
+            "halo": "#4e5a66"
+          }
         ]
       },
-      "legend": {
-        "orient": "right",
-        "labelLimit": 220
+      "mark": {
+        "type": "text",
+        "fontSize": 32,
+        "fontWeight": 800,
+        "tooltip": false,
+        "baseline": "middle",
+        "strokeWidth": 7,
+        "strokeJoin": "round"
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": null
+        },
+        "text": {
+          "field": "text"
+        },
+        "stroke": {
+          "field": "halo",
+          "type": "nominal",
+          "scale": null
+        },
+        "fill": {
+          "field": "halo",
+          "type": "nominal",
+          "scale": null
+        }
       }
     },
-    "opacity": {
-      "condition": {
-        "param": "pickSource",
-        "value": 1
+    {
+      "data": {
+        "values": [
+          {
+            "x": 210,
+            "y": 107,
+            "text": "56%",
+            "halo": "#005c00"
+          },
+          {
+            "x": 210,
+            "y": 334,
+            "text": "39.5%",
+            "halo": "#4e5a66"
+          }
+        ]
       },
-      "value": 0.15
-    },
-    "tooltip": [
-      {
-        "field": "source",
-        "title": "Source"
+      "mark": {
+        "type": "text",
+        "fontSize": 32,
+        "fontWeight": 800,
+        "tooltip": false,
+        "baseline": "middle",
+        "fill": "#ffffff"
       },
-      {
-        "field": "source_pct",
-        "title": "% of reports",
-        "format": ".1f"
-      },
-      {
-        "field": "source_records",
-        "title": "Reports",
-        "format": ","
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "scale": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "scale": null
+        },
+        "text": {
+          "field": "text"
+        }
       }
-    ]
-  },
+    }
+  ],
   "config": {
     "font": "Inter, system-ui, sans-serif",
     "background": "transparent",
@@ -98,35 +222,38 @@
       "stroke": null
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Number of reports per whale species, 2016-2025.",
+  "description": "Number of sightings of each whale species, 2016-2025. Humpback and southern right whales make up 97.5% of sightings.",
   "data": {
     "url": "data/c2_species_totals.csv",
     "format": {
@@ -10,9 +10,9 @@
       }
     }
   },
-  "width": 520,
+  "width": 730,
   "height": {
-    "step": 24
+    "step": 28
   },
   "transform": [
     {
@@ -20,8 +20,48 @@
       "as": "colour_group"
     }
   ],
+  "encoding": {
+    "y": {
+      "field": "species_name",
+      "type": "nominal",
+      "title": null,
+      "sort": {
+        "field": "records",
+        "op": "max",
+        "order": "descending"
+      },
+      "axis": {
+        "labelFontSize": 12,
+        "labelColor": "#16212d",
+        "ticks": false,
+        "domain": false,
+        "labelPadding": 8
+      }
+    },
+    "x": {
+      "field": "records",
+      "type": "quantitative",
+      "title": null,
+      "axis": {
+        "grid": false,
+        "labels": false,
+        "ticks": false,
+        "domain": false
+      }
+    }
+  },
   "layer": [
     {
+      "params": [
+        {
+          "name": "hoverBar",
+          "select": {
+            "type": "point",
+            "on": "pointerover",
+            "clear": "pointerout"
+          }
+        }
+      ],
       "mark": {
         "type": "bar",
         "cornerRadiusEnd": 4,
@@ -30,30 +70,6 @@
         }
       },
       "encoding": {
-        "y": {
-          "field": "species_name",
-          "type": "nominal",
-          "sort": "-x",
-          "title": null,
-          "axis": {
-            "labelFontSize": 12,
-            "labelColor": "#1d1d1b",
-            "ticks": false,
-            "domain": false
-          }
-        },
-        "x": {
-          "field": "records",
-          "type": "quantitative",
-          "title": "Reports, 2016–2025",
-          "axis": {
-            "grid": false,
-            "labels": false,
-            "ticks": false,
-            "domain": false,
-            "title": null
-          }
-        },
         "color": {
           "field": "colour_group",
           "type": "nominal",
@@ -67,11 +83,19 @@
             ],
             "range": [
               "#2a78d6",
-              "#eb6834",
+              "#eda100",
               "#1baf7a",
-              "#c9c7c0"
+              "#b9c3cd"
             ]
           }
+        },
+        "opacity": {
+          "condition": {
+            "param": "hoverBar",
+            "empty": true,
+            "value": 1
+          },
+          "value": 0.55
         },
         "tooltip": [
           {
@@ -80,7 +104,7 @@
           },
           {
             "field": "records",
-            "title": "Reports",
+            "title": "Sightings",
             "format": ","
           }
         ]
@@ -90,23 +114,45 @@
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 5,
+        "dx": 6,
         "fontSize": 11,
-        "fill": "#52514e"
+        "fill": "#3f4b57"
       },
       "encoding": {
-        "y": {
-          "field": "species_name",
-          "type": "nominal",
-          "sort": "-x"
-        },
-        "x": {
-          "field": "records",
-          "type": "quantitative"
-        },
         "text": {
           "field": "records",
           "format": ","
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "species_name": "Southern Right Whale",
+            "records": 4409,
+            "text": [
+              "◀ Humpbacks + southern rights:",
+              "97.5% of all sightings"
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 52,
+        "dy": -8,
+        "lineHeight": 14,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "fill": "#16212d",
+        "tooltip": false
+      },
+      "encoding": {
+        "text": {
+          "field": "text"
         }
       }
     }
@@ -118,35 +164,38 @@
       "stroke": null
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

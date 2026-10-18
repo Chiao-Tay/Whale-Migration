@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Share of each species' reports by month, 2016-2025. Each slice is a month (January at the top, clockwise); slice length = share of that species' reports.",
+  "description": "Percentage of each species' sightings in each month, 2016-2025. Each slice is a month (January at the top, clockwise); slice length shows the share of that species' sightings.",
   "data": {
     "url": "data/c1_species_by_month.csv",
     "format": {
@@ -27,7 +27,7 @@
       "as": "tmid"
     },
     {
-      "calculate": "datum.species_name + ' · ' + format(datum.species_total, ',') + ' reports'",
+      "calculate": "datum.species_name + ' · ' + format(datum.species_total, ',') + ' sightings'",
       "as": "panel"
     }
   ],
@@ -41,22 +41,28 @@
         "order": "descending"
       },
       "header": {
-        "labelFontSize": 12
+        "labelFontSize": 12,
+        "labelPadding": 6
       }
     }
   },
+  "spacing": 24,
   "spec": {
-    "width": 200,
-    "height": 200,
+    "width": 255,
+    "height": 255,
     "layer": [
       {
         "mark": {
           "type": "arc",
           "fill": null,
-          "stroke": "#e3e1db",
+          "stroke": "#c5d2de",
           "strokeWidth": 1,
+          "strokeDash": [
+            3,
+            3
+          ],
           "tooltip": false,
-          "radius": 52
+          "radius": 66
         },
         "encoding": {
           "theta": {
@@ -96,7 +102,7 @@
           "type": "arc",
           "padAngle": 0.02,
           "cornerRadius": 2,
-          "stroke": "#fcfcfb",
+          "stroke": "#f3f7fa",
           "strokeWidth": 1
         },
         "encoding": {
@@ -128,8 +134,8 @@
                 75
               ],
               "range": [
-                4,
-                86
+                5,
+                110
               ]
             }
           },
@@ -145,7 +151,7 @@
               ],
               "range": [
                 "#2a78d6",
-                "#eb6834",
+                "#eda100",
                 "#1baf7a"
               ]
             }
@@ -169,23 +175,65 @@
             },
             {
               "field": "share_pct",
-              "title": "% of this species' reports",
+              "title": "% of this species' sightings",
               "format": ".1f"
             },
             {
               "field": "records",
-              "title": "Reports",
+              "title": "Sightings",
               "format": ","
             }
           ]
         }
       },
       {
+        "transform": [
+          {
+            "joinaggregate": [
+              {
+                "op": "max",
+                "field": "share_pct",
+                "as": "max_share"
+              }
+            ],
+            "groupby": [
+              "species_name"
+            ]
+          },
+          {
+            "filter": "datum.share_pct === datum.max_share"
+          },
+          {
+            "calculate": "'Busiest: ' + datum.month_name + ' (' + format(datum.share_pct, '.0f') + '%)'",
+            "as": "peak_label"
+          }
+        ],
         "mark": {
           "type": "text",
-          "radius": 99,
-          "fontSize": 10,
-          "fill": "#8a8984"
+          "fontSize": 11,
+          "fontWeight": 600,
+          "fill": "#16212d",
+          "tooltip": false
+        },
+        "encoding": {
+          "x": {
+            "value": 127
+          },
+          "y": {
+            "value": 282
+          },
+          "text": {
+            "field": "peak_label"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "radius": 126,
+          "fontSize": 11,
+          "fill": "#5f6b77",
+          "tooltip": false
         },
         "encoding": {
           "theta": {
@@ -216,35 +264,38 @@
       "stroke": null
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "When humpbacks are reported at seven east-coast sites (share of each site's reports by month), north at top.",
+  "description": "Percentage of each east-coast town's humpback sightings in each month, northern towns at the top.",
   "data": {
     "url": "data/c7_eastcoast_site_month.csv",
     "format": {
@@ -17,7 +17,7 @@
   },
   "transform": [
     {
-      "calculate": "datum.site + '  (' + datum.site_total + ')'",
+      "calculate": "datum.site + '  ·  ' + datum.site_total + ' sightings'",
       "as": "site_label"
     }
   ],
@@ -31,25 +31,21 @@
         "order": "descending"
       },
       "header": {
-        "labelAngle": 0,
-        "labelAlign": "right",
-        "labelOrient": "left",
-        "labelPadding": 8,
-        "labelFontSize": 12,
-        "labelFontWeight": 500
+        "labels": false,
+        "title": null
       }
     }
   },
   "spec": {
-    "width": 480,
-    "height": 26,
+    "width": 560,
+    "height": 54,
     "layer": [
       {
         "mark": {
           "type": "area",
           "interpolate": "monotone",
           "fill": "#2a78d6",
-          "fillOpacity": 0.75,
+          "fillOpacity": 0.8,
           "stroke": "#0d366b",
           "strokeWidth": 1
         },
@@ -80,7 +76,7 @@
                 11,
                 12
               ],
-              "labelExpr": "['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][datum.value - 1]",
+              "labelExpr": "[\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"][datum.value - 1]",
               "grid": true,
               "ticks": false,
               "domain": false
@@ -96,8 +92,8 @@
                 55
               ],
               "range": [
-                26,
-                -62
+                54,
+                -6
               ]
             }
           }
@@ -144,7 +140,7 @@
           "tooltip": [
             {
               "field": "site",
-              "title": "Site"
+              "title": "Town"
             },
             {
               "field": "month_name",
@@ -152,18 +148,171 @@
             },
             {
               "field": "share_pct",
-              "title": "% of site's reports",
+              "title": "% of town's sightings",
               "format": ".1f"
             },
             {
               "field": "records",
-              "title": "Reports"
+              "title": "Sightings"
             }
           ]
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.month === 1"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "bottom",
+          "dy": -4,
+          "fontSize": 12,
+          "fontWeight": 600,
+          "fill": "#16212d",
+          "tooltip": false
+        },
+        "encoding": {
+          "x": {
+            "value": 0
+          },
+          "y": {
+            "value": 54
+          },
+          "text": {
+            "field": "site_label"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.site === 'Sydney' && datum.month === 6"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "center",
+          "baseline": "bottom",
+          "dx": 0,
+          "dy": -5,
+          "fontSize": 11,
+          "fontWeight": 600,
+          "fill": "#16212d",
+          "tooltip": false
+        },
+        "encoding": {
+          "x": {
+            "field": "month",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "share_pct",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "heading north"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.site === 'Sydney' && datum.month === 10"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "center",
+          "baseline": "bottom",
+          "dx": 0,
+          "dy": -5,
+          "fontSize": 11,
+          "fontWeight": 600,
+          "fill": "#16212d",
+          "tooltip": false
+        },
+        "encoding": {
+          "x": {
+            "field": "month",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "share_pct",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "heading south"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.site === 'Eden' && datum.month === 9"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "middle",
+          "dx": -10,
+          "dy": 0,
+          "fontSize": 11,
+          "fontWeight": 600,
+          "fill": "#16212d",
+          "tooltip": false
+        },
+        "encoding": {
+          "x": {
+            "field": "month",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "share_pct",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "mothers & calves head south ▶"
+          }
+        }
+      },
+      {
+        "transform": [
+          {
+            "filter": "datum.site === 'Hervey Bay' && datum.month === 8"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "center",
+          "baseline": "bottom",
+          "dx": 0,
+          "dy": -4,
+          "fontSize": 11,
+          "fontWeight": 600,
+          "fill": "#16212d",
+          "tooltip": false
+        },
+        "encoding": {
+          "x": {
+            "field": "month",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "share_pct",
+            "type": "quantitative"
+          },
+          "text": {
+            "value": "August: resting stop"
+          }
         }
       }
     ]
   },
+  "bounds": "flush",
   "config": {
     "font": "Inter, system-ui, sans-serif",
     "background": "transparent",
@@ -171,35 +320,38 @@
       "stroke": null
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     },
     "facet": {
       "spacing": 0

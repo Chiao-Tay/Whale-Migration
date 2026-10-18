@@ -1,85 +1,145 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Whale reports per year by how they were reported, 2000-2025.",
-  "data": {
-    "url": "data/c10_sources_by_year.csv",
-    "format": {
-      "type": "csv",
-      "parse": {
-        "year": "number",
-        "records": "number"
-      }
-    }
-  },
-  "width": 620,
-  "height": 260,
-  "transform": [
-    {
-      "calculate": "indexof([\"Citizen science apps\", \"Government wildlife atlases\", \"Scientific surveys\", \"Museum collections\"], datum.source)",
-      "as": "src_order"
-    }
-  ],
-  "encoding": {
-    "x": {
-      "field": "year",
-      "type": "quantitative",
-      "title": null,
-      "scale": {
-        "domain": [
-          2000,
-          2025
-        ],
-        "nice": false
-      },
-      "axis": {
-        "format": "d",
-        "grid": false
-      }
-    },
-    "y": {
-      "field": "records",
-      "type": "quantitative",
-      "stack": true,
-      "title": "Reports per year"
-    },
-    "color": {
-      "field": "source",
-      "type": "nominal",
-      "title": null,
-      "scale": {
-        "domain": [
-          "Citizen science apps",
-          "Government wildlife atlases",
-          "Scientific surveys",
-          "Museum collections"
-        ],
-        "range": [
-          "#6250d6",
-          "#eda100",
-          "#008300",
-          "#e87ba4"
-        ]
-      },
-      "legend": {
-        "orient": "top-left",
-        "direction": "vertical"
-      }
-    },
-    "order": {
-      "field": "src_order"
-    }
-  },
+  "description": "Whale sightings each year, by where they came from, 2000-2025.",
+  "width": 800,
+  "height": 330,
   "layer": [
     {
+      "data": {
+        "url": "data/c10_sources_by_year.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "records": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.source === 'Scientific surveys' || datum.source === 'Museum collections' ? 'Scientific surveys & museums' : datum.source",
+          "as": "source_group"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "records",
+              "as": "records"
+            }
+          ],
+          "groupby": [
+            "year",
+            "source_group"
+          ]
+        },
+        {
+          "calculate": "indexof([\"Citizen science apps\", \"Government wildlife atlases\", \"Scientific surveys & museums\"], datum.source_group)",
+          "as": "src_order"
+        },
+        {
+          "calculate": "{'Citizen science apps': 'Apps & websites', 'Government wildlife atlases': 'Government atlases', 'Scientific surveys & museums': 'Surveys & museums'}[datum.source_group]",
+          "as": "source_name"
+        }
+      ],
       "mark": {
         "type": "area",
         "interpolate": "monotone",
-        "fillOpacity": 0.85,
-        "stroke": "#fcfcfb",
+        "fillOpacity": 0.9,
+        "stroke": "#f3f7fa",
         "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              2000,
+              2025
+            ],
+            "nice": false
+          },
+          "axis": {
+            "format": "d",
+            "grid": false,
+            "tickCount": 13
+          }
+        },
+        "y": {
+          "field": "records",
+          "type": "quantitative",
+          "stack": true,
+          "title": "Sightings per year"
+        },
+        "color": {
+          "field": "source_group",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Citizen science apps",
+              "Government wildlife atlases",
+              "Scientific surveys & museums"
+            ],
+            "range": [
+              "#008300",
+              "#7c8a99",
+              "#c4cdd6"
+            ]
+          },
+          "legend": {
+            "orient": "top-left",
+            "direction": "vertical",
+            "fillColor": "#f3f7fa",
+            "padding": 6,
+            "labelExpr": "{'Citizen science apps': 'Apps & websites', 'Government wildlife atlases': 'Government atlases', 'Scientific surveys & museums': 'Surveys & museums'}[datum.label]"
+          }
+        },
+        "order": {
+          "field": "src_order"
+        }
       }
     },
     {
+      "data": {
+        "url": "data/c10_sources_by_year.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "year": "number",
+            "records": "number"
+          }
+        }
+      },
+      "transform": [
+        {
+          "calculate": "datum.source === 'Scientific surveys' || datum.source === 'Museum collections' ? 'Scientific surveys & museums' : datum.source",
+          "as": "source_group"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "records",
+              "as": "records"
+            }
+          ],
+          "groupby": [
+            "year",
+            "source_group"
+          ]
+        },
+        {
+          "calculate": "indexof([\"Citizen science apps\", \"Government wildlife atlases\", \"Scientific surveys & museums\"], datum.source_group)",
+          "as": "src_order"
+        },
+        {
+          "calculate": "{'Citizen science apps': 'Apps & websites', 'Government wildlife atlases': 'Government atlases', 'Scientific surveys & museums': 'Surveys & museums'}[datum.source_group]",
+          "as": "source_name"
+        }
+      ],
       "params": [
         {
           "name": "hoverYear",
@@ -100,6 +160,56 @@
         "size": 30
       },
       "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": null,
+          "scale": {
+            "domain": [
+              2000,
+              2025
+            ],
+            "nice": false
+          },
+          "axis": {
+            "format": "d",
+            "grid": false,
+            "tickCount": 13
+          }
+        },
+        "y": {
+          "field": "records",
+          "type": "quantitative",
+          "stack": true,
+          "title": "Sightings per year"
+        },
+        "color": {
+          "field": "source_group",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Citizen science apps",
+              "Government wildlife atlases",
+              "Scientific surveys & museums"
+            ],
+            "range": [
+              "#008300",
+              "#7c8a99",
+              "#c4cdd6"
+            ]
+          },
+          "legend": {
+            "orient": "top-left",
+            "direction": "vertical",
+            "fillColor": "#f3f7fa",
+            "padding": 6,
+            "labelExpr": "{'Citizen science apps': 'Apps & websites', 'Government wildlife atlases': 'Government atlases', 'Scientific surveys & museums': 'Surveys & museums'}[datum.label]"
+          }
+        },
+        "order": {
+          "field": "src_order"
+        },
         "opacity": {
           "condition": {
             "param": "hoverYear",
@@ -114,15 +224,86 @@
             "title": "Year"
           },
           {
-            "field": "source",
-            "title": "Source"
+            "field": "source_name",
+            "title": "Came from"
           },
           {
             "field": "records",
-            "title": "Reports",
+            "title": "Sightings",
             "format": ","
           }
         ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2000.4,
+            "y": 420,
+            "text": "2000: just 3 app sightings"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "lineHeight": 14,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "fill": "#16212d",
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 2010,
+            "y": 4720,
+            "text": "2009–12: one big Kimberley survey"
+          },
+          {
+            "x": 2023,
+            "y": 2470,
+            "text": "2023: record 1,876 app sightings ▼"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "lineHeight": 14,
+        "fontSize": 11,
+        "fontWeight": 600,
+        "fill": "#16212d",
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "text"
+        }
       }
     }
   ],
@@ -133,35 +314,38 @@
       "stroke": null
     },
     "axis": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#3f4b57",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 500,
-      "gridColor": "#ecebe7",
-      "domainColor": "#cfcdc6",
-      "tickColor": "#cfcdc6"
+      "gridColor": "#d6e0ea",
+      "domainColor": "#b9c6d3",
+      "tickColor": "#b9c6d3"
     },
     "legend": {
-      "labelColor": "#52514e",
-      "titleColor": "#52514e",
+      "labelColor": "#3f4b57",
+      "titleColor": "#16212d",
       "labelFontSize": 11,
       "titleFontSize": 11,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
-      "labelColor": "#1d1d1b",
-      "titleColor": "#52514e",
+      "labelColor": "#16212d",
+      "titleColor": "#3f4b57",
       "labelFontSize": 12,
       "labelFontWeight": 600
     },
     "title": {
-      "color": "#1d1d1b",
-      "fontSize": 14,
+      "color": "#16212d",
+      "fontSize": 13,
       "fontWeight": 600,
       "anchor": "start",
-      "subtitleColor": "#52514e"
+      "subtitleColor": "#3f4b57"
+    },
+    "text": {
+      "font": "Inter, system-ui, sans-serif"
     }
   }
 }

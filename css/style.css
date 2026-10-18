@@ -1,119 +1,290 @@
-/* ---------- Tokens ---------- */
+/* =========================================================
+   The Humpback Highway: page styles
+   Colour roles are fixed for the whole page:
+     humpback = blue, southern right = amber, blue whale = teal,
+     magnitude = one blue ramp, key findings = navy on a pale-blue highlight.
+   No red is used anywhere.
+
+   Sightlines (every block snaps to one of these):
+     A  the column's left edge: headings, paragraphs, cards, bands, stat rows
+     B  the right-hand column in every chapter intro (31rem + 40px gap)
+     C  inside cards: charts start on the card title's edge; side panels start
+        after a fixed 660px chart column
+     D  chapter numbers share one centre line in the left margin
+   ========================================================= */
 :root {
-  --surface: #fcfcfb;
-  --surface-alt: #f3f1ec;
-  --ink: #1d1d1b;
-  --ink-2: #52514e;
-  --muted: #8a8984;
-  --rule: #e3e1db;
-  --accent: #2a78d6;      /* humpback blue */
-  --deep: #0d366b;
-  --max: 760px;
+  /* surfaces: a gentle "deeper water" shift from chapter to chapter, never white */
+  --tone-1: #e8eff5;
+  --tone-2: #dfe8f0;
+  --card: #f3f7fa;
+  --card-line: #cbd8e3;
+  --rule: #c3d1de;
+
+  /* ink */
+  --ink: #16212d;
+  --ink-2: #3f4b57;
+  --muted: #5f6b77;
+
+  /* roles */
+  --navy: #0d366b;
+  --accent: #2a78d6;
+  --mark: #cfe1f6;            /* highlight behind key findings */
+  --humpback: #2a78d6;
+  --srw: #eda100;
+  --bluewhale: #1baf7a;
+  --citizen: #008300;
+  --atlas: #7c8a99;
+
+  /* layout */
+  --column: 1000px;
+  --measure: 31rem;           /* body text ~10 words per line */
+  --gap: 40px;
+  --shadow: 0 1px 2px rgba(13, 54, 107, 0.05), 0 6px 18px rgba(13, 54, 107, 0.04);
 }
 
 * { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 56px; }
 
 body {
   margin: 0;
-  background: var(--surface);
+  background: var(--tone-1);
   color: var(--ink);
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-size: 17px;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Hero ---------- */
+.column { max-width: var(--column); margin: 0 auto; }
+p { margin: 0 0 14px; }
+a { color: var(--accent); }
+
+/* Consistent emphasis: bold keywords in navy, key findings on a highlight */
+strong { color: var(--navy); font-weight: 700; }
+mark {
+  background: linear-gradient(transparent 12%, var(--mark) 12%, var(--mark) 92%, transparent 92%);
+  color: var(--navy); font-weight: 700; padding: 0 3px; border-radius: 2px;
+}
+
+/* Colour-key chips used in the text */
+.chip { display: inline-block; width: 0.75em; height: 0.75em; border-radius: 50%; margin: 0 5px 0 1px; vertical-align: -0.02em; }
+.chip.humpback { background: var(--humpback); }
+.chip.srw { background: var(--srw); }
+.chip.bluewhale { background: var(--bluewhale); }
+.chip.citizen { background: var(--citizen); }
+.chip.atlas { background: var(--atlas); }
+
+/* =========================================================
+   Hero
+   ========================================================= */
 .hero {
-  background: linear-gradient(180deg, #0d366b 0%, #184f95 70%, #256abf 100%);
+  background: linear-gradient(170deg, #0a2a4d 0%, #123f73 55%, #1f5ea5 100%);
   color: #fff;
-  padding: 88px 24px 72px;
+  padding: 84px 24px 48px;
+  border-bottom: 4px solid var(--accent);
 }
-.hero-inner { max-width: var(--max); margin: 0 auto; }
-.kicker {
-  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase;
-  color: #b7d3f6; margin: 0 0 12px;
-}
+.kicker { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #a9cbf2; margin: 0 0 14px; font-weight: 600; }
 .hero h1 {
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: clamp(36px, 6vw, 56px); line-height: 1.08; margin: 0 0 20px; font-weight: 700;
+  font-size: clamp(40px, 6vw, 64px); line-height: 1.05; margin: 0 0 20px; font-weight: 700; letter-spacing: -0.01em;
 }
-.hero .lede { font-size: 20px; color: #e5effc; max-width: 640px; margin: 0; }
+.hero .lede { font-size: 20px; line-height: 1.5; color: #e2edfa; max-width: 30rem; margin: 0 0 36px; }
 
-/* ---------- Story navigation ---------- */
+.hero-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 28px; }
+.hero-stats div {
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.45; color: #d6e5f6;
+}
+.hero-stats b {
+  display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 34px; line-height: 1.1;
+  color: #fff; margin-bottom: 4px;
+}
+
+.key-strip {
+  display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; margin: 0;
+  font-size: 14px; color: #d6e5f6; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+.key-strip .label { font-weight: 600; color: #fff; }
+
+/* =========================================================
+   Sticky chapter navigation
+   ========================================================= */
 .toc {
   position: sticky; top: 0; z-index: 10;
-  background: rgba(252, 252, 251, 0.94); backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--rule);
+  background: rgba(13, 54, 107, 0.96); backdrop-filter: blur(6px);
+  padding: 0 24px; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
-.toc ol {
-  max-width: 1000px; margin: 0 auto; padding: 10px 24px; list-style: none;
-  display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 13px;
-}
-.toc a { color: var(--ink-2); text-decoration: none; }
-.toc a:hover { color: var(--accent); }
-.toc span { color: var(--muted); margin-right: 4px; }
+.toc .column { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.toc ol { list-style: none; margin: 0; padding: 10px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; }
+.toc a { color: #d6e5f6; text-decoration: none; }
+.toc a:hover { color: #fff; text-decoration: underline; }
+.toc ol span { color: #86b6ef; font-weight: 700; margin-right: 5px; }
+.toc .legend { font-size: 12px; color: #d6e5f6; display: flex; gap: 10px; white-space: nowrap; }
 
-/* ---------- Sections ---------- */
-main { padding: 0 24px; }
-section.chapter { max-width: 1000px; margin: 0 auto; padding: 72px 0 24px; }
-section.chapter + section.chapter { border-top: 1px solid var(--rule); }
-.chapter-head, .prose { max-width: var(--max); margin-left: auto; margin-right: auto; }
-.chapter-num {
-  font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent);
-  margin: 0 0 6px; font-weight: 600;
+/* =========================================================
+   "The story in one minute"
+   ========================================================= */
+.brief { padding: 48px 24px 8px; background: var(--tone-1); }
+.brief-card {
+  background: var(--card); border: 1px solid var(--card-line); border-top: 4px solid var(--accent);
+  border-radius: 12px; padding: 28px 32px 22px; box-shadow: var(--shadow);
 }
-h2 {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 34px; line-height: 1.15; margin: 0 0 16px; font-weight: 700;
+.brief-card h2 { font-size: 28px; margin: 0 0 18px; }
+.brief-list { list-style: none; margin: 0 0 16px; padding: 0;
+              display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 40px; }
+.brief-list li { position: relative; padding-left: 40px; font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+.brief-list li > span:first-child {
+  position: absolute; left: 0; top: 0; width: 28px; height: 28px; border-radius: 50%;
+  background: var(--navy); color: #fff; display: grid; place-items: center; font-size: 13px; font-weight: 700;
 }
-h3 { font-size: 17px; margin: 0 0 4px; font-weight: 600; }
-.prose p { margin: 0 0 16px; color: #2b2a28; }
-.prose strong { color: var(--ink); }
+.brief-note { font-size: 14px; color: var(--muted); margin: 0; padding-top: 14px; border-top: 1px solid var(--card-line); }
 
-/* ---------- Figures ---------- */
-figure.chart {
-  margin: 32px auto 40px; max-width: 1000px;
-  display: flex; flex-direction: column; align-items: center;
-}
-.chart-head { width: 100%; max-width: var(--max); margin-bottom: 10px; }
-.chart-head p { margin: 0; font-size: 15px; color: var(--ink-2); }
-.vis { max-width: 100%; overflow: hidden; }
-figcaption {
-  width: 100%; max-width: var(--max); margin-top: 8px;
-  font-size: 13px; color: var(--muted); line-height: 1.5;
-}
-.how { color: var(--accent); font-weight: 600; }
+/* =========================================================
+   Chapters: alternating tones mark each part of the story
+   ========================================================= */
+section.chapter { padding: 64px 24px 56px; border-top: 1px solid var(--rule); }
+section.chapter.tone-1 { background: var(--tone-1); }
+section.chapter.tone-2 { background: var(--tone-2); }
 
-/* Two charts side by side on wide screens */
-.pair { display: grid; grid-template-columns: 1fr; gap: 8px; }
-@media (min-width: 1100px) {
-  .pair { grid-template-columns: 1fr 1fr; align-items: start; }
+.chapter-head { position: relative; margin-bottom: 28px; }
+.chapter-badge {
+  width: 56px; height: 56px; border-radius: 50%; background: var(--navy); color: #fff;
+  display: grid; place-items: center; font-family: "Source Serif 4", Georgia, serif; font-size: 26px; font-weight: 700;
+  margin-bottom: 12px;
+}
+.chapter-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 0 0 4px; font-weight: 700; }
+h2 { font-family: "Source Serif 4", Georgia, serif; font-size: 38px; line-height: 1.12; margin: 0 0 8px; font-weight: 700; }
+.question { font-size: 18px; color: var(--ink-2); margin: 0; }
+
+/* Intro: story text on the left, key-finding card on the right (same height) */
+.intro { display: grid; grid-template-columns: var(--measure) minmax(0, 1fr); gap: var(--gap); align-items: stretch; }
+.prose { max-width: var(--measure); }
+.prose p:last-child { margin-bottom: 0; }
+
+.key-aside {
+  background: var(--card); border: 1px solid var(--card-line); border-left: 5px solid var(--accent);
+  border-radius: 12px; padding: 24px 28px; display: flex; align-items: center; box-shadow: var(--shadow);
+}
+.key-num {
+  display: block; font-family: "Source Serif 4", Georgia, serif; font-size: 52px; font-weight: 700;
+  line-height: 1; color: var(--navy); margin-bottom: 10px; letter-spacing: -0.01em;
+}
+.key-finding { font-family: "Source Serif 4", Georgia, serif; font-size: 22px; line-height: 1.35; color: var(--ink); margin: 0; }
+
+/* Short lead-in sentence between two charts: one line across the column */
+.lead-in { margin: 36px 0 0; font-size: 17px; color: var(--ink-2); }
+
+/* Closing sentence of a chapter: a full-width band */
+.chapter-end {
+  margin: 36px 0 0; padding: 18px 24px; border-radius: 10px;
+  background: rgba(13, 54, 107, 0.07);
+  font-family: "Source Serif 4", Georgia, serif; font-style: italic; font-size: 20px; line-height: 1.4; color: var(--ink);
+  text-align: center;          /* the band spans the column; centred text keeps it balanced */
 }
 
-/* Key-fact callout */
-.callout {
-  max-width: var(--max); margin: 8px auto 24px; padding: 16px 20px;
-  background: var(--surface-alt); border-left: 4px solid var(--accent); border-radius: 4px;
-  font-size: 15px; color: var(--ink-2);
+/* =========================================================
+   Chart cards
+   ========================================================= */
+figure.card {
+  margin: 24px 0 0; padding: 24px 28px 20px;
+  background: var(--card); border: 1px solid var(--card-line); border-radius: 12px; box-shadow: var(--shadow);
 }
-.big-number {
-  font-family: "Source Serif 4", Georgia, serif; font-size: 44px; font-weight: 700;
-  color: var(--deep); line-height: 1; display: block; margin-bottom: 4px;
-}
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;
-         max-width: var(--max); margin: 24px auto; }
-.stats div { background: var(--surface-alt); border-radius: 6px; padding: 16px; font-size: 14px; color: var(--ink-2); }
+.card-head { margin-bottom: 14px; }
+.card-head h3 { font-size: 20px; line-height: 1.3; margin: 0 0 4px; font-weight: 700; }
+.card-head p { font-size: 15px; color: var(--ink-2); margin: 0; max-width: 46rem; }
+.card-head p.hint { margin-top: 6px; font-size: 13.5px; color: var(--muted); }
+.card-head p.hint::before { content: "ⓘ "; color: var(--accent); font-weight: 700; }
 
-/* Vega-Embed controls (dropdown) */
-.vega-bindings { font-size: 14px; color: var(--ink-2); margin: 6px 0 10px; }
-.vega-bindings select { font: inherit; padding: 4px 8px; border-radius: 4px; border: 1px solid #cfcdc6; background: #fff; }
+.vis { width: 100%; overflow: hidden; }
+/* vega-embed turns .vis into the embed box: chart above its controls, on the card title's edge */
+figure.card > .vis, .card-split > .vis { display: flex; flex-direction: column; align-items: flex-start; }
+
+/* Chart on the left, take-aways on the right: the panel always starts at the same point */
+.card-split { display: grid; grid-template-columns: 660px minmax(0, 1fr); gap: var(--gap); align-items: center; }
+
+.takeaways { font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+.takeaways h4, .card-foot h4 { margin: 0 0 8px; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy); }
+.takeaways h4.sub { margin-top: 18px; }
+.takeaways ul { margin: 0; padding-left: 18px; }
+.takeaways li { margin-bottom: 10px; }
+.takeaways p { margin: 0; }
+
+.card-foot {
+  margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--card-line);
+  font-size: 14px; line-height: 1.5; color: var(--ink-2);
+}
+.card-foot ul { margin: 0; padding-left: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 6px 32px; }
+/* List items that start with a colour chip: the chip replaces the bullet */
+.card-foot li:has(> .chip:first-child), .takeaways li:has(> .chip:first-child) { list-style: none; margin-left: -18px; }
+
+/* Key-number tiles */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 24px 0 0; }
+.stats div { background: var(--card); border: 1px solid var(--card-line); border-radius: 10px; padding: 16px 18px; font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.big-number { font-family: "Source Serif 4", Georgia, serif; font-size: 40px; font-weight: 700; color: var(--navy); line-height: 1; display: block; margin-bottom: 6px; }
+
+/* Full-width reminder: statement on the left, explanation on the right */
+.insight {
+  margin: 24px 0 0; padding: 26px 32px;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--gap); align-items: center;
+  background: var(--card); border: 1px solid var(--card-line); border-left: 5px solid var(--accent);
+  border-radius: 12px; box-shadow: var(--shadow);
+}
+.insight-head { font-family: "Source Serif 4", Georgia, serif; font-size: 26px; line-height: 1.3; font-weight: 700; color: var(--ink); margin: 0; }
+.insight-body p { margin: 0 0 10px; color: var(--ink-2); }
+.insight-body p:last-child { margin-bottom: 0; }
+
+/* Call to action: three steps across the column */
+.cta {
+  margin: 24px 0 0; padding: 26px 32px 22px;
+  background: var(--card); border: 1px solid var(--card-line); border-top: 4px solid var(--citizen);
+  border-radius: 12px; box-shadow: var(--shadow);
+}
+.cta h3 { font-family: "Source Serif 4", Georgia, serif; font-size: 26px; margin: 0 0 18px; }
+.cta-steps { list-style: none; margin: 0 0 18px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cta-steps li {
+  position: relative; padding: 16px 18px 16px 62px; border-radius: 10px;
+  background: var(--tone-1); font-size: 15px; line-height: 1.45; color: var(--ink-2);
+}
+.cta-steps li > span:first-child {
+  position: absolute; left: 18px; top: 16px; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--citizen); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 14px;
+}
+.cta-steps b { display: block; color: var(--ink); font-size: 16px; margin-bottom: 2px; }
+.cta-note { margin: 0; padding-top: 14px; border-top: 1px solid var(--card-line); font-size: 14px; color: var(--muted); }
+
+/* Vega-Embed controls and tooltip */
+.vega-bindings { font-size: 14px; color: var(--ink-2); margin: 10px 0 2px; }
+.vega-bindings select {
+  font: inherit; padding: 5px 10px; border-radius: 6px; border: 1px solid var(--card-line); background: #e8eff5; color: var(--ink);
+}
 #vg-tooltip-element { font-family: "Inter", system-ui, sans-serif; font-size: 12px; }
 
-/* ---------- Footer ---------- */
-footer { background: #1d1d1b; color: #c3c2b7; padding: 48px 24px; margin-top: 64px; font-size: 14px; }
-footer .inner { max-width: var(--max); margin: 0 auto; }
-footer h2 { color: #fff; font-size: 22px; }
+/* =========================================================
+   Footer
+   ========================================================= */
+footer { background: #0a2240; color: #c4d0dc; padding: 56px 24px 64px; font-size: 14px; line-height: 1.6; }
+footer h2 { color: #fff; font-size: 26px; margin-bottom: 16px; }
+footer h3 { color: #fff; margin: 28px 0 8px; font-size: 15px; letter-spacing: 0.04em; }
 footer a { color: #9ec5f4; }
 footer li { margin-bottom: 8px; }
+footer strong { color: #fff; }
+.footer-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+footer details { margin-top: 28px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 8px; padding: 14px 18px; }
+footer summary { cursor: pointer; color: #fff; font-weight: 600; }
+footer table { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: 13px; }
+footer th, footer td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+footer th { color: #fff; font-weight: 600; }
+
+/* =========================================================
+   Wide screens: chapter numbers hang in the left margin (sightline D)
+   Narrower screens: stack side-by-side blocks
+   ========================================================= */
+@media (min-width: 1180px) {
+  .chapter-badge { position: absolute; left: -84px; top: 6px; margin: 0; }
+}
+@media (max-width: 1060px) {
+  .card-split { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .intro, .footer-grid, .hero-stats, .stats, .insight, .cta-steps, .brief-list { grid-template-columns: 1fr; }
+}

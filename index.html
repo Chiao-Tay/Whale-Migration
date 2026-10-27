@@ -199,14 +199,20 @@
           <p>Whale sightings in squares about 100 km wide, two months at a time, 2016–2025</p>
           <p class="hint">Darker = more sightings. Each colour step is ten times the last.</p>
         </div>
-        <div id="c5" class="vis" aria-label="Six small maps of whale sightings by two-month period"></div>
-        <div class="card-foot">
-          <h4>What stands out</h4>
-          <ul>
-            <li>January–February: just <strong>29 sightings</strong> nationwide.</li>
-            <li>July–August: <strong>6,770 sightings</strong>, the busiest period.</li>
-            <li>September–October: still <strong>4,807</strong>, as whales head south.</li>
-          </ul>
+        <!-- Keep the chart panels and the three observations on the same
+             270px / 14px column grid; scroll together on narrower screens. -->
+        <div class="season-scroll" role="region" aria-label="Seasonal whale sightings map and aligned observations" tabindex="0">
+          <div class="season-track">
+            <div id="c5" class="vis" aria-label="Six small maps of whale sightings by two-month period"></div>
+            <div class="card-foot season-foot">
+              <h4>What stands out</h4>
+              <ul>
+                <li>January–February: just <strong>29 sightings</strong> nationwide.</li>
+                <li>July–August: <strong>6,770 sightings</strong>, the busiest period.</li>
+                <li>September–October: still <strong>4,807</strong>, as whales head south.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </figure>
 

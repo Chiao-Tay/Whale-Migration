@@ -248,6 +248,64 @@ figure.card > .vis, .card-split > .vis { align-self: start; }
 .card-foot li:has(> .chip:first-child)::before { display: none; }
 .takeaways li:has(> .chip:first-child) { list-style: none; margin-left: -18px; }
 
+/* Six-map sightlines: mirror the exact hconcat geometry of the existing
+   c5 Vega-Lite specification (three 270px panels, 14px between panels).
+   Map and takeaway columns move together, with ONE scrollbar if necessary. */
+.season-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  overscroll-behavior-inline: contain;
+}
+.season-track {
+  --season-map-width: 270px;
+  --season-gap: 14px;
+  --season-grid-width: calc(3 * var(--season-map-width) + 2 * var(--season-gap));
+  display: inline-block;
+  min-width: var(--season-grid-width);
+  vertical-align: top;
+}
+/* The inner Vega chart keeps its natural size; the outer wrapper scrolls. */
+.season-track > #c5.vis {
+  display: block;
+  width: max-content;
+  min-width: var(--season-grid-width);
+  max-width: none;
+  overflow: visible;
+}
+.season-track > .season-foot {
+  box-sizing: border-box;
+  width: var(--season-grid-width);
+  max-width: none;
+  margin-top: 22px;
+}
+.season-track > .season-foot ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, var(--season-map-width)));
+  gap: var(--season-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.season-track > .season-foot li {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  line-height: 1.55;
+}
+.season-track > .season-foot li::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 9px;
+  vertical-align: .17em;
+  border-radius: 50%;
+  background: #5f8dbd;
+  position: static;
+}
+
 /* Chapter 4 metric row matches the hero's three equal columns. */
 .stats { margin: 0 0 32px; }
 .stats div { min-width: 0; background: #fff; color: var(--ink-2); border: 1px solid var(--card-line); }

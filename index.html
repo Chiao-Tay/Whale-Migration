@@ -53,11 +53,6 @@
       <li><a href="#eyes"><span>5</span>Eyes on the water</a></li>
       <li><a href="#yourturn"><span>6</span>Your turn</a></li>
     </ol>
-    <div class="legend" aria-hidden="true">
-      <span><span class="chip humpback"></span>Humpback</span>
-      <span><span class="chip srw"></span>Southern right</span>
-      <span><span class="chip bluewhale"></span>Blue</span>
-    </div>
   </div>
 </nav>
 
@@ -70,7 +65,6 @@
   <section class="chapter tone-1" id="travellers">
     <div class="column">
       <div class="chapter-head">
-        <div class="chapter-badge">1</div>
         <p class="chapter-label">Chapter 1</p>
         <h2>Meet the travellers</h2>
         <p class="question">Which whales visit Australia?</p>
@@ -160,7 +154,6 @@
   <section class="chapter tone-2" id="highway">
     <div class="column">
       <div class="chapter-head">
-        <div class="chapter-badge">2</div>
         <p class="chapter-label">Chapter 2</p>
         <h2>The whale highway</h2>
         <p class="question">Where do whales go?</p>
@@ -227,7 +220,6 @@
   <section class="chapter tone-1" id="wave">
     <div class="column">
       <div class="chapter-head">
-        <div class="chapter-badge">3</div>
         <p class="chapter-label">Chapter 3</p>
         <h2>The migration wave</h2>
         <p class="question">When can I see whales near me?</p>
@@ -298,7 +290,6 @@
   <section class="chapter tone-2" id="hunt">
     <div class="column">
       <div class="chapter-head">
-        <div class="chapter-badge">4</div>
         <p class="chapter-label">Chapter 4</p>
         <h2>Hunted to the brink</h2>
         <p class="question">How close did we come to losing them?</p>
@@ -352,7 +343,6 @@
   <section class="chapter tone-1" id="eyes">
     <div class="column">
       <div class="chapter-head">
-        <div class="chapter-badge">5</div>
         <p class="chapter-label">Chapter 5</p>
         <h2>Eyes on the water</h2>
         <p class="question">Who counts the whales today?</p>
@@ -429,7 +419,6 @@
   <section class="chapter tone-2" id="yourturn">
     <div class="column">
       <div class="chapter-head">
-        <div class="chapter-badge">6</div>
         <p class="chapter-label">Chapter 6</p>
         <h2>Your turn</h2>
         <p class="question">Where and when should I go?</p>
@@ -440,12 +429,12 @@
           <p>A few spots stand out.</p>
           <p><strong>South coast:</strong> Head of Bight (SA) and Warrnambool (VIC) for <span class="chip srw"></span>southern right whales.</p>
           <p><strong>East and west coasts:</strong> Hervey Bay, Byron Bay and Augusta for <span class="chip humpback"></span>humpbacks.</p>
-          <p>First, find a <strong>big circle near you</strong> on the map. Then check that spot's <strong>best months</strong>.</p>
+          <p>First, find a <strong>big circle near you</strong> on the map. Then check when sightings have been <strong>most commonly reported</strong>.</p>
         </div>
         <aside class="key-aside">
           <div>
             <span class="key-num">10 years</span>
-            <p class="key-finding">of sightings point to the <mark>best places and months</mark> to see whales.</p>
+            <p class="key-finding">of recorded sightings reveal <mark>historically popular places and months</mark> for whale watching.</p>
           </div>
         </aside>
       </div>
@@ -467,7 +456,7 @@
         </div>
       </figure>
 
-      <p class="lead-in">Found a spot near you? Now check the <strong>best months</strong> to go.</p>
+      <p class="lead-in">Found a spot near you? Now check the <strong>historically busiest months</strong>.</p>
 
       <figure class="card">
         <div class="card-head">
@@ -553,6 +542,21 @@
 
 <script>
   const opts = { actions: false, renderer: "svg" };
+  // Highlight the chapter being read. The sticky navigation also works without JS.
+  const links = [...document.querySelectorAll('.toc a[href^="#"]')];
+  const sections = [...document.querySelectorAll('main > section.chapter')];
+  if ('IntersectionObserver' in window) {
+    const activeSection = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        links.forEach(link => {
+          if (link.hash === '#' + entry.target.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+    }, {rootMargin: '-10% 0px -75% 0px', threshold: 0});
+    sections.forEach(section => activeSection.observe(section));
+  }
   const charts = ["c1_radial_calendar", "c2_species_totals", "c3_species_by_state", "c4_important_areas",
                   "c5_grid_by_period", "c6_migration_wave", "c7_ridgeline", "c8_the_hunt",
                   "c9_who_reports", "c10_citizen_science_boom", "c11_hotspots", "c12_planner"];

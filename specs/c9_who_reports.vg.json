@@ -95,9 +95,7 @@
             "legendY": 165,
             "direction": "vertical",
             "labelLimit": 300,
-            "labelFontSize": 13,
-            "titleFontSize": 13,
-            "symbolSize": 180,
+            "symbolSize": 160,
             "rowPadding": 8,
             "labelExpr": "{'Citizen science apps': 'Apps & websites · 56%', 'Government wildlife atlases': 'Government atlases · 39.5%', 'Scientific surveys & museums': 'Surveys & museums · 4.5%'}[datum.label]"
           }
@@ -224,8 +222,8 @@
     "axis": {
       "labelColor": "#3f4b57",
       "titleColor": "#3f4b57",
-      "labelFontSize": 11,
-      "titleFontSize": 11,
+      "labelFontSize": 12,
+      "titleFontSize": 12,
       "titleFontWeight": 500,
       "gridColor": "#d6e0ea",
       "domainColor": "#b9c6d3",
@@ -234,15 +232,15 @@
     "legend": {
       "labelColor": "#3f4b57",
       "titleColor": "#16212d",
-      "labelFontSize": 11,
-      "titleFontSize": 11,
+      "labelFontSize": 12,
+      "titleFontSize": 12,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
       "labelColor": "#16212d",
       "titleColor": "#3f4b57",
-      "labelFontSize": 12,
+      "labelFontSize": 13,
       "labelFontWeight": 600
     },
     "title": {

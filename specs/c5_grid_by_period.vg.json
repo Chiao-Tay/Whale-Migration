@@ -7,7 +7,7 @@
         {
           "title": {
             "text": "Jan – Feb · 29 sightings",
-            "fontSize": 12,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#16212d"
           },
@@ -175,11 +175,11 @@
                 "align": "center",
                 "dx": 0,
                 "dy": 0,
-                "fontSize": 11,
+                "fontSize": 12,
                 "fontWeight": 600,
-                "lineHeight": 13,
+                "lineHeight": 15,
                 "tooltip": false,
-                "fill": "#3f4b57"
+                "fill": "#16212d"
               },
               "encoding": {
                 "longitude": {
@@ -200,7 +200,7 @@
         {
           "title": {
             "text": "Mar – Apr · 65 sightings",
-            "fontSize": 12,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#16212d"
           },
@@ -355,7 +355,7 @@
         {
           "title": {
             "text": "May – Jun · 2,022 sightings",
-            "fontSize": 12,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#16212d"
           },
@@ -515,7 +515,7 @@
         {
           "title": {
             "text": "Jul – Aug · 6,770 sightings ★ busiest",
-            "fontSize": 12,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#0d366b"
           },
@@ -683,11 +683,11 @@
                 "align": "center",
                 "dx": 0,
                 "dy": 0,
-                "fontSize": 11,
+                "fontSize": 12,
                 "fontWeight": 600,
-                "lineHeight": 13,
+                "lineHeight": 15,
                 "tooltip": false,
-                "fill": "#3f4b57"
+                "fill": "#16212d"
               },
               "encoding": {
                 "longitude": {
@@ -708,7 +708,7 @@
         {
           "title": {
             "text": "Sep – Oct · 4,807 sightings",
-            "fontSize": 12,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#16212d"
           },
@@ -863,7 +863,7 @@
         {
           "title": {
             "text": "Nov – Dec · 326 sightings",
-            "fontSize": 12,
+            "fontSize": 13,
             "fontWeight": 600,
             "color": "#16212d"
           },
@@ -1039,8 +1039,8 @@
     "axis": {
       "labelColor": "#3f4b57",
       "titleColor": "#3f4b57",
-      "labelFontSize": 11,
-      "titleFontSize": 11,
+      "labelFontSize": 12,
+      "titleFontSize": 12,
       "titleFontWeight": 500,
       "gridColor": "#d6e0ea",
       "domainColor": "#b9c6d3",
@@ -1049,15 +1049,15 @@
     "legend": {
       "labelColor": "#3f4b57",
       "titleColor": "#16212d",
-      "labelFontSize": 11,
-      "titleFontSize": 11,
+      "labelFontSize": 12,
+      "titleFontSize": 12,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
       "labelColor": "#16212d",
       "titleColor": "#3f4b57",
-      "labelFontSize": 12,
+      "labelFontSize": 13,
       "labelFontWeight": 600
     },
     "title": {

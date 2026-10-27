@@ -31,7 +31,6 @@
         "order": "descending"
       },
       "axis": {
-        "labelFontSize": 12,
         "labelColor": "#16212d",
         "ticks": false,
         "domain": false,
@@ -115,7 +114,7 @@
         "type": "text",
         "align": "left",
         "dx": 6,
-        "fontSize": 11,
+        "fontSize": 12,
         "fill": "#3f4b57"
       },
       "encoding": {
@@ -144,8 +143,8 @@
         "baseline": "middle",
         "dx": 52,
         "dy": -8,
-        "lineHeight": 14,
-        "fontSize": 11,
+        "lineHeight": 16,
+        "fontSize": 12,
         "fontWeight": 600,
         "fill": "#16212d",
         "tooltip": false
@@ -166,8 +165,8 @@
     "axis": {
       "labelColor": "#3f4b57",
       "titleColor": "#3f4b57",
-      "labelFontSize": 11,
-      "titleFontSize": 11,
+      "labelFontSize": 12,
+      "titleFontSize": 12,
       "titleFontWeight": 500,
       "gridColor": "#d6e0ea",
       "domainColor": "#b9c6d3",
@@ -176,15 +175,15 @@
     "legend": {
       "labelColor": "#3f4b57",
       "titleColor": "#16212d",
-      "labelFontSize": 11,
-      "titleFontSize": 11,
+      "labelFontSize": 12,
+      "titleFontSize": 12,
       "titleFontWeight": 600,
       "symbolStrokeWidth": 0
     },
     "header": {
       "labelColor": "#16212d",
       "titleColor": "#3f4b57",
-      "labelFontSize": 12,
+      "labelFontSize": 13,
       "labelFontWeight": 600
     },
     "title": {

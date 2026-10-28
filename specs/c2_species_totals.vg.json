@@ -155,6 +155,150 @@
           "field": "text"
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1000
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#3f4b57",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "value": 62
+        },
+        "y2": {
+          "value": 274
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 820,
+            "x2": 1000
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#3f4b57",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "value": 62
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 820,
+            "x2": 1000
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#3f4b57",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "value": 274
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1000,
+            "x2": 1180
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#3f4b57",
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "x2": {
+          "field": "x2"
+        },
+        "y": {
+          "value": 168
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "x": 1250,
+            "text": [
+              "Eight other species together:",
+              "349 sightings, just 2.5% of the total.",
+              "Blue whales come third with 150.",
+              "Omura's whale was seen only twice in ten years."
+            ]
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "lineHeight": 18,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "fill": "#16212d",
+        "tooltip": false
+      },
+      "encoding": {
+        "x": {
+          "field": "x",
+          "type": "quantitative"
+        },
+        "y": {
+          "value": 168
+        },
+        "text": {
+          "field": "text"
+        }
+      }
     }
   ],
   "config": {

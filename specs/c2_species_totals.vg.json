@@ -241,7 +241,7 @@
         "values": [
           {
             "x": 1000,
-            "x2": 1180
+            "x2": 4900
           }
         ]
       },
@@ -267,7 +267,7 @@
       "data": {
         "values": [
           {
-            "x": 1250,
+            "x": 4409,
             "text": [
               "Eight other species together:",
               "349 sightings, just 2.5% of the total.",
@@ -281,6 +281,7 @@
         "type": "text",
         "align": "left",
         "baseline": "middle",
+        "dx": 52,
         "lineHeight": 18,
         "fontSize": 12,
         "fontWeight": 600,

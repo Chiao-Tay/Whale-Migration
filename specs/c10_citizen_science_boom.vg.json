@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Whale sightings each year, by where they came from, 2000-2025.",
-  "width": 800,
+  "width": 880,
   "height": 330,
   "layer": [
     {

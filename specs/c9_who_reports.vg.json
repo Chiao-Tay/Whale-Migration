@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Where whale sightings came from, 2016-2025. Each square is 1% of sightings.",
   "data": {
     "url": "data/c9_sources_waffle.csv",
@@ -14,14 +15,8 @@
       }
     }
   },
-  "width": 420,
-  "height": 420,
-  "padding": {
-    "left": 5,
-    "top": 5,
-    "bottom": 5,
-    "right": 200
-  },
+  "width": 942,
+  "height": 235.5,
   "transform": [
     {
       "calculate": "datum.source === 'Scientific surveys' || datum.source === 'Museum collections' ? 'Scientific surveys & museums' : datum.source",
@@ -41,6 +36,14 @@
       "groupby": [
         "source_group"
       ]
+    },
+    {
+      "calculate": "floor(datum.square / 5)",
+      "as": "wcol"
+    },
+    {
+      "calculate": "datum.square % 5",
+      "as": "wrow"
     }
   ],
   "layer": [
@@ -59,24 +62,57 @@
       ],
       "mark": {
         "type": "square",
-        "size": 1120,
+        "size": 1565.310096,
         "cornerRadius": 4
       },
       "encoding": {
         "x": {
-          "field": "col",
+          "field": "wcol",
           "type": "ordinal",
-          "axis": null
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15,
+              16,
+              17,
+              18,
+              19
+            ]
+          }
         },
         "y": {
-          "field": "row",
+          "field": "wrow",
           "type": "ordinal",
-          "axis": null
+          "axis": null,
+          "scale": {
+            "domain": [
+              0,
+              1,
+              2,
+              3,
+              4
+            ]
+          }
         },
         "color": {
           "field": "source_group",
           "type": "nominal",
-          "title": "Sightings came from",
+          "title": null,
           "scale": {
             "domain": [
               "Citizen science apps",
@@ -90,13 +126,11 @@
             ]
           },
           "legend": {
-            "orient": "none",
-            "legendX": 440,
-            "legendY": 165,
-            "direction": "vertical",
+            "orient": "bottom",
+            "direction": "horizontal",
+            "symbolSize": 140,
+            "columnPadding": 24,
             "labelLimit": 300,
-            "symbolSize": 160,
-            "rowPadding": 8,
             "labelExpr": "{'Citizen science apps': 'Apps & websites · 56%', 'Government wildlife atlases': 'Government atlases · 39.5%', 'Scientific surveys & museums': 'Surveys & museums · 4.5%'}[datum.label]"
           }
         },
@@ -123,14 +157,14 @@
       "data": {
         "values": [
           {
-            "x": 210,
-            "y": 107,
+            "x": 263.76,
+            "y": 117.75,
             "text": "56%",
             "halo": "#005c00"
           },
           {
-            "x": 210,
-            "y": 334,
+            "x": 734.76,
+            "y": 117.75,
             "text": "39.5%",
             "halo": "#4e5a66"
           }
@@ -175,14 +209,14 @@
       "data": {
         "values": [
           {
-            "x": 210,
-            "y": 107,
+            "x": 263.76,
+            "y": 117.75,
             "text": "56%",
             "halo": "#005c00"
           },
           {
-            "x": 210,
-            "y": 334,
+            "x": 734.76,
+            "y": 117.75,
             "text": "39.5%",
             "halo": "#4e5a66"
           }

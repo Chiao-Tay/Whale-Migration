@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Percentage of each east-coast town's humpback sightings in each month, northern towns at the top.",
   "data": {
     "url": "data/c7_eastcoast_site_month.csv",
@@ -37,7 +38,7 @@
     }
   },
   "spec": {
-    "width": 560,
+    "width": 942,
     "height": 54,
     "layer": [
       {

@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Number of sightings of each whale species, 2016-2025. Humpback and southern right whales make up 97.5% of sightings.",
   "data": {
     "url": "data/c2_species_totals.csv",
@@ -10,7 +11,7 @@
       }
     }
   },
-  "width": 730,
+  "width": 806,
   "height": {
     "step": 28
   },

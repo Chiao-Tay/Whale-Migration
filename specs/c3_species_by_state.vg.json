@@ -1,8 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Number of whale species seen off each state, 2016-2025. Sightings at sea are counted for the nearest state's coast.",
-  "width": 640,
-  "height": 520,
+  "width": 942,
+  "height": 620,
   "projection": {
     "type": "conicEqualArea",
     "parallels": [

@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Percentage of each species' sightings in each month, 2016-2025. Each slice is a month (January at the top, clockwise); slice length shows the share of that species' sightings.",
   "data": {
     "url": "data/c1_species_by_month.csv",
@@ -46,9 +47,10 @@
     }
   },
   "spacing": 24,
+  "bounds": "flush",
   "spec": {
-    "width": 255,
-    "height": 255,
+    "width": 298,
+    "height": 298,
     "layer": [
       {
         "mark": {
@@ -61,7 +63,7 @@
             3
           ],
           "tooltip": false,
-          "radius": 66
+          "radius": 70
         },
         "encoding": {
           "theta": {
@@ -134,7 +136,7 @@
               ],
               "range": [
                 5,
-                110
+                118
               ]
             }
           },
@@ -216,10 +218,10 @@
         },
         "encoding": {
           "x": {
-            "value": 127
+            "value": 149.0
           },
           "y": {
-            "value": 282
+            "value": 324
           },
           "text": {
             "field": "peak_label"
@@ -229,7 +231,7 @@
       {
         "mark": {
           "type": "text",
-          "radius": 126,
+          "radius": 136,
           "fontSize": 12,
           "fill": "#5f6b77",
           "tooltip": false

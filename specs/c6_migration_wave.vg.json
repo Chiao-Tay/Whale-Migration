@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Percentage of humpback sightings in each month, for each 1-degree strip of coast, 2016-2025. Dot = busiest month for that strip.",
   "data": {
     "url": "data/c6_humpback_lat_month.csv",
@@ -38,9 +39,9 @@
   },
   "spacing": 26,
   "spec": {
-    "width": 400,
+    "width": 718,
     "height": {
-      "step": 20
+      "step": 22
     },
     "encoding": {
       "x": {
@@ -189,7 +190,7 @@
         },
         "encoding": {
           "x": {
-            "value": 408
+            "value": 728
           },
           "text": {
             "field": "note"

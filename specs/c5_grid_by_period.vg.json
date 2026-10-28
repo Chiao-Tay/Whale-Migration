@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Whale sightings in squares about 100 km wide (1 degree), two months at a time, 2016-2025.",
   "vconcat": [
     {
@@ -11,8 +12,8 @@
             "fontWeight": 600,
             "color": "#16212d"
           },
-          "width": 270,
-          "height": 228,
+          "width": 298,
+          "height": 250,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -204,8 +205,8 @@
             "fontWeight": 600,
             "color": "#16212d"
           },
-          "width": 270,
-          "height": 228,
+          "width": 298,
+          "height": 250,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -359,8 +360,8 @@
             "fontWeight": 600,
             "color": "#16212d"
           },
-          "width": 270,
-          "height": 228,
+          "width": 298,
+          "height": 250,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -508,7 +509,8 @@
           ]
         }
       ],
-      "spacing": 14
+      "spacing": 24,
+      "bounds": "flush"
     },
     {
       "hconcat": [
@@ -519,8 +521,8 @@
             "fontWeight": 600,
             "color": "#0d366b"
           },
-          "width": 270,
-          "height": 228,
+          "width": 298,
+          "height": 250,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -712,8 +714,8 @@
             "fontWeight": 600,
             "color": "#16212d"
           },
-          "width": 270,
-          "height": 228,
+          "width": 298,
+          "height": 250,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -867,8 +869,8 @@
             "fontWeight": 600,
             "color": "#16212d"
           },
-          "width": 270,
-          "height": 228,
+          "width": 298,
+          "height": 250,
           "projection": {
             "type": "conicEqualArea",
             "parallels": [
@@ -1016,7 +1018,8 @@
           ]
         }
       ],
-      "spacing": 14
+      "spacing": 24,
+      "bounds": "flush"
     }
   ],
   "resolve": {
@@ -1027,7 +1030,7 @@
       "color": "shared"
     }
   },
-  "spacing": 16,
+  "spacing": 24,
   "config": {
     "font": "Inter, system-ui, sans-serif",
     "background": "transparent",

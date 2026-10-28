@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Humpback whales caught at Australian whaling stations per year, 1925-1963.",
   "data": {
     "url": "data/c8_whaling_catches.csv",
@@ -11,7 +12,7 @@
       }
     }
   },
-  "width": 800,
+  "width": 884,
   "height": 320,
   "layer": [
     {

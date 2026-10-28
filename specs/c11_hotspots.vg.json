@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Whale-watching hotspots: sightings in squares about 50 km wide (half a degree), 2016-2025. Circle area = number of sightings.",
-  "width": 860,
+  "width": 942,
   "height": 660,
   "projection": {
     "type": "conicEqualArea",

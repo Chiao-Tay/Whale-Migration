@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "Areas the government marks as important for whales (DCCEEW Biologically Important Areas), coloured by behaviour. Pick a species or click a behaviour in the legend.",
-  "width": 860,
+  "width": 942,
   "height": 640,
   "projection": {
     "type": "conicEqualArea",

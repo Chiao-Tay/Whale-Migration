@@ -1,5 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": 0,
   "description": "The main whale-watching season at popular spots (months holding the middle 80% of sightings), 2016-2025. Dot = busiest month.",
   "data": {
     "url": "data/c12_planner.csv",
@@ -57,7 +58,7 @@
   },
   "spacing": 14,
   "spec": {
-    "width": 700,
+    "width": 802,
     "height": {
       "step": 30
     },

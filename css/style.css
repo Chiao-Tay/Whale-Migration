@@ -149,12 +149,20 @@ mark {
   background: rgba(13, 54, 107, 0.96); backdrop-filter: blur(6px);
   padding: 0 24px; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
-.toc .column { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: nowrap; }
-.toc ol { list-style: none; margin: 0; padding: 10px 0; display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: var(--t-meta); }
-.toc a { color: #d6e5f6; text-decoration: none; }
-.toc a:hover { color: #fff; text-decoration: underline; }
-.toc ol span { color: #86b6ef; font-weight: 700; margin-right: 5px; }
-.toc .legend { font-size: var(--t-meta); color: #d6e5f6; display: flex; gap: 8px; white-space: nowrap; margin-left: auto; }
+/* Six equal links on the page grid (24px gutter): link 3 starts on the second third,
+   link 4 on the centre line, link 5 on the last third */
+.toc ol {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0 var(--gutter);
+  font-size: var(--t-meta);
+}
+.toc a {
+  display: flex; align-items: baseline; gap: 8px; padding: 12px 0 10px;
+  color: #d6e5f6; text-decoration: none; border-bottom: 3px solid transparent;
+}
+.toc a:hover { color: #fff; border-bottom-color: rgba(134, 182, 239, 0.5); }
+.toc a.active { color: #fff; font-weight: 700; border-bottom-color: #86b6ef; }   /* chapter on screen */
+.toc ol span { color: #86b6ef; font-weight: 700; flex: none; }
 
 /* =========================================================
    Chapters: alternating tones mark each part of the story
@@ -267,9 +275,8 @@ footer strong { color: #fff; }
 @media (min-width: 1180px) {
   .chapter-badge { position: absolute; left: -84px; top: 4px; margin: 0; }
 }
-@media (max-width: 1060px) {
-  .toc .column { flex-wrap: wrap; }
-}
+
 @media (max-width: 900px) {
+  .toc ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .intro, .hero-stats, .stats, .insight { grid-template-columns: 1fr; }
 }

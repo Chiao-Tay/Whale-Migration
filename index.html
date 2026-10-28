@@ -53,11 +53,6 @@
       <li><a href="#eyes"><span>5</span>Eyes on the water</a></li>
       <li><a href="#yourturn"><span>6</span>Your turn</a></li>
     </ol>
-    <div class="legend" aria-hidden="true">
-      <span><span class="chip humpback"></span>Humpback</span>
-      <span><span class="chip srw"></span>Southern right</span>
-      <span><span class="chip bluewhale"></span>Blue</span>
-    </div>
   </div>
 </nav>
 
@@ -404,7 +399,7 @@
 <footer>
   <div class="column">
     <h2>About this page</h2>
-    <p class="author"><strong>Chiao Jing Tay</strong> · Student ID [33591857] · FIT3179 Data Visualisation 2 · 28 October 2026</p>
+    <p class="author"><strong>[Your name]</strong> · Student ID [Your student ID] · FIT3179 Data Visualisation 2 · Monash University · October 2026</p>
 
     <h3>Data sources</h3>
     <div class="refs">
@@ -421,6 +416,13 @@
   const charts = ["c1_radial_calendar", "c2_species_totals", "c3_species_by_state", "c4_important_areas",
                   "c5_grid_by_period", "c6_migration_wave", "c7_ridgeline", "c8_the_hunt",
                   "c9_who_reports", "c10_citizen_science_boom", "c11_hotspots", "c12_planner"];
+  // Underline the menu link of the chapter currently on screen
+  const links = [...document.querySelectorAll(".toc a")];
+  const watch = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id));
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll("section.chapter").forEach(sec => watch.observe(sec));
+
   charts.forEach(name => {
     const id = "#" + name.split("_")[0];
     vegaEmbed(id, "specs/" + name + ".vg.json", opts).catch(err => console.error(name, err));

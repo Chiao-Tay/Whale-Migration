@@ -392,15 +392,7 @@
         <p class="takeaway">East-coast humpbacks: <strong>June–October</strong>. South-coast southern rights: <strong>July–September</strong>.</p>
       </figure>
 
-      <div class="cta">
-        <h3>Join the story</h3>
-        <ol class="cta-steps">
-          <li><span>1</span><b>Pick a spot and month</b>Use the hotspot map and the season chart above.</li>
-          <li><span>2</span><b>Watch from a safe distance</b>Give whales plenty of space, as the national guidelines ask.</li>
-          <li><span>3</span><b>Share your photo</b>Upload it to iNaturalist or Happywhale. Your sighting becomes part of this story.</li>
-        </ol>
-        <p class="cta-note">Before you go, read the <a href="https://ablis.business.gov.au/service/ag/australian-national-guidelines-for-whale-and-dolphin-watching-2017/31426">Australian National Guidelines for Whale and Dolphin Watching</a>.</p>
-      </div>
+      <p class="chapter-end">Next winter, look out to sea. The humpback highway passes right by our beaches.</p>
     </div>
   </section>
 
@@ -412,48 +404,15 @@
 <footer>
   <div class="column">
     <h2>About this page</h2>
-    <p><strong>Author:</strong> [Your name] · FIT3179 Data Visualisation 2 · Monash University · October 2026</p>
+    <p class="author"><strong>[Your name]</strong> · Student ID [Your student ID] · FIT3179 Data Visualisation 2 · Monash University · October 2026</p>
 
-    <div class="footer-grid">
-      <div>
-        <h3>Data sources</h3>
-        <ul>
-          <li>Atlas of Living Australia (2026). Occurrence records for baleen whales (Mysticeti), downloaded 13 October 2026. <a href="https://doi.org/10.26197/ala.df33528c-b498-46ab-ad3d-027674a40fe1">doi.org/10.26197/ala.df33528c-b498-46ab-ad3d-027674a40fe1</a></li>
-          <li>Department of Climate Change, Energy, the Environment and Water (2025). <a href="https://fed.dcceew.gov.au/datasets/erin::biologically-important-areas-for-protected-marine-species">Biologically Important Areas for protected marine species</a>.</li>
-          <li>Natural Earth. <a href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Admin 1 – States, Provinces</a> (public domain).</li>
-          <li>Australian Government. <a href="https://www.agriculture.gov.au/sites/default/files/documents/eastern-humpback-whales.pdf">Eastern humpback whales</a> (ban year and population figures, Chapter 4).</li>
-        </ul>
-      </div>
-      <div>
-        <h3>How the data was prepared</h3>
-        <p>Sightings are records logged by the public, scientists and agencies. They are not population counts.</p>
-        <p>Kept: sightings in Australian waters with a month and species, 2016–2025. Chapter 4 uses historical whaling records; the chart of sightings over time in Chapter 5 uses 2000–2025.</p>
-        <p>Maps use an equal-area projection centred on Australia, so areas keep their true relative size.</p>
-        <h3>Use of AI</h3>
-        <p>[Edit this to describe your own use: e.g. "Claude (Anthropic) helped process the data, write the Vega-Lite specifications, lay out the page and draft text. I checked all figures against the source data."]</p>
-      </div>
+    <h3>Data sources</h3>
+    <div class="refs">
+      <p>Atlas of Living Australia. (2026). [Occurrence records for baleen whales (Mysticeti)] [Data set]. <a href="https://doi.org/10.26197/ala.df33528c-b498-46ab-ad3d-027674a40fe1">https://doi.org/10.26197/ala.df33528c-b498-46ab-ad3d-027674a40fe1</a></p>
+      <p>Australian Government. (n.d.). <em>Humpback whales</em> [Fact sheet]. <a href="https://www.agriculture.gov.au/sites/default/files/documents/eastern-humpback-whales.pdf">https://www.agriculture.gov.au/sites/default/files/documents/eastern-humpback-whales.pdf</a></p>
+      <p>Department of Climate Change, Energy, the Environment and Water. (2025). <em>Biologically important areas for protected marine species</em> [Data set]. Retrieved October 14, 2026, from <a href="https://fed.dcceew.gov.au/datasets/erin::biologically-important-areas-for-protected-marine-species">https://fed.dcceew.gov.au/datasets/erin::biologically-important-areas-for-protected-marine-species</a></p>
+      <p>Natural Earth. (n.d.). <em>Admin 1 – states, provinces</em> [Data set]. Retrieved October 13, 2026, from <a href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/">https://www.naturalearthdata.com/downloads/10m-cultural-vectors/</a></p>
     </div>
-
-    <details>
-      <summary>Design notes: what, why and how for each chart (Munzner's framework)</summary>
-      <table>
-        <thead><tr><th>Chart</th><th>What (data)</th><th>Why (task)</th><th>How (idiom and encoding)</th></tr></thead>
-        <tbody>
-          <tr><td>Species sightings (Ch. 1)</td><td>Species (categorical); sightings (quantitative)</td><td>Compare, rank</td><td>Bar chart: length on a common scale; hue = species</td></tr>
-          <tr><td>Whale calendar (Ch. 1)</td><td>Month (cyclic ordinal); % of sightings (quantitative); species</td><td>Discover seasonal distribution; compare species</td><td>Radial calendar small multiples: angle = month, radius (area-corrected) = share</td></tr>
-          <tr><td>Species by state (Ch. 1)</td><td>States (geographic); species recorded (ordinal)</td><td>Compare regions</td><td>Choropleth: sequential lightness; equal-area conic projection</td></tr>
-          <tr><td>Important areas (Ch. 2)</td><td>Area polygons (geographic); behaviour (categorical)</td><td>Locate, identify</td><td>Area map: hue = behaviour; filter by species</td></tr>
-          <tr><td>Highway through the year (Ch. 2)</td><td>1° cells (geographic); sightings (quantitative); period (ordinal)</td><td>Discover change in distribution over time</td><td>Gridded map small multiples: log-scaled lightness</td></tr>
-          <tr><td>Busiest month by coast (Ch. 3)</td><td>Strip of coast, month (ordinal); % of sightings (quantitative)</td><td>Identify peaks; compare along the coast</td><td>Heatmap: lightness in a matrix; dot = maximum per row</td></tr>
-          <tr><td>Seven towns (Ch. 3)</td><td>Town (ordered by latitude); month; % of sightings</td><td>Compare distributions</td><td>Ridgeline: area height on a shared month axis</td></tr>
-          <tr><td>The hunt (Ch. 4)</td><td>Year (quantitative); catches (quantitative); coast (categorical)</td><td>Identify trend and extremes</td><td>Stacked bar timeline: length; lightness = coast</td></tr>
-          <tr><td>Where sightings came from (Ch. 5)</td><td>Source (categorical); share (quantitative)</td><td>Part-to-whole</td><td>Waffle chart: count of unit squares; hue = source</td></tr>
-          <tr><td>Sightings over time (Ch. 5)</td><td>Year; sightings; source</td><td>Identify trend</td><td>Stacked area: height; hue = source</td></tr>
-          <tr><td>Hotspots (Ch. 6)</td><td>0.5° cells (geographic); sightings; top species</td><td>Locate hotspots; compare</td><td>Proportional symbol map: circle area = sightings; hue = species</td></tr>
-          <tr><td>When to go (Ch. 6)</td><td>Site; season start, end and peak month</td><td>Look up, compare</td><td>Range chart: bar span on a month axis; dot = peak</td></tr>
-        </tbody>
-      </table>
-    </details>
   </div>
 </footer>
 
